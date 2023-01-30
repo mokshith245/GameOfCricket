@@ -7,6 +7,25 @@ public class Player
     private int runs;
     private int number_of_balls_played;
     private int wickets;
+    private float number_of_overs_bowled;
+
+    public float getNumber_of_overs_bowled() {
+        return number_of_overs_bowled;
+    }
+
+    public void setNumber_of_overs_bowled(float number_of_overs_bowled) {
+        this.number_of_overs_bowled = number_of_overs_bowled;
+    }
+
+    private int number_of_runs_given;
+
+    public int getNumber_of_runs_given() {
+        return number_of_runs_given;
+    }
+
+    public void setNumber_of_runs_given(int number_of_runs_given) {
+        this.number_of_runs_given = number_of_runs_given;
+    }
 
     public String getName() {
         return name;

@@ -6,12 +6,13 @@ import java.util.List;
 public class Team
 {
 
-    Team(){
-        create_team();
+    Team()
+    {
+       // create_team();
        // print();
     }
 //    player cricketer=new player();
-    List<Player> team1=new ArrayList<Player>();
+    List<Player> team=new ArrayList<Player>();
 
     public List create_team()
     {
@@ -19,16 +20,16 @@ public class Team
         {
             Player cricketer = new Player();
             cricketer.setName(String.format("Player %d", i));
-            team1.add(cricketer);
+            team.add(cricketer);
         }
-        return  team1;
+        return  team;
 
     }
 
     public void print()
     {
 
-        for(Player j:team1)
+        for(Player j:team)
         {
             System.out.println(j.getName()+" "+j.getRuns());
         }
