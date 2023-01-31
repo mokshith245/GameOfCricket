@@ -8,6 +8,16 @@ public class Player
     private int number_of_balls_played;
     private int wickets;
     private float number_of_overs_bowled;
+    private  int extras;
+
+
+    public int getExtras() {
+        return extras;
+    }
+
+    public void setExtras(int extras) {
+        this.extras = extras;
+    }
 
     public float getNumber_of_overs_bowled() {
         return number_of_overs_bowled;

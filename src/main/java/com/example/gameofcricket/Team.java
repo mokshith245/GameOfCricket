@@ -11,7 +11,17 @@ public class Team
        // create_team();
        // print();
     }
-//    player cricketer=new player();
+    private int score;
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    //    player cricketer=new player();
     List<Player> team=new ArrayList<Player>();
 
     public List create_team()
@@ -19,7 +29,7 @@ public class Team
         for(int i=1;i<=11;i++)
         {
             Player cricketer = new Player();
-            cricketer.setName(String.format("Player %d", i));
+            cricketer.setName(String.format("Player%d", i));
             team.add(cricketer);
         }
         return  team;
