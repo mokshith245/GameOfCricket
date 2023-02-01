@@ -37,11 +37,11 @@ public class GameOfCricketApplication
 
          if(wonToss==team1_obj)
          {
-             System.out.print("Team1 wom the toss and choose to ");
+             System.out.print("Team1 won the toss and choose to ");
          }
          else
          {
-             System.out.print("Team2 wom the toss and choose to ");
+             System.out.print("Team2 won the toss and choose to ");
          }
 
          List<String> batOrBall=new ArrayList<>();
@@ -73,6 +73,27 @@ public class GameOfCricketApplication
                 target++;
                 Play team2_play=new Play();
                 team2_play.Bat(team2,team1,team2_obj,target);
+
+                if(team1_obj.getScore()<team2_obj.getScore())
+                {
+                    int wonByWickets=10- team2_obj.getWickets();
+                    System.out.println("Team2  Won by  "+wonByWickets+" wickets.");
+                    System.out.println("Team1 score = "+team1_obj.getScore()+"/"+team1_obj.getWickets());
+                    System.out.println("Overs = "+team1_obj.getOvers()+"/15");
+                    System.out.println("Team2 score = "+team2_obj.getScore()+"/"+team2_obj.getWickets());
+                    System.out.println("Overs = "+team2_obj.getOvers()+"/15");
+
+
+                }
+                else
+                {
+                    System.out.println("Team1 Won by "+(target- team2_obj.getScore()-1)+" runs.");
+                    System.out.println("Team1 score = "+team1_obj.getScore()+"/"+team1_obj.getWickets());
+                    System.out.println("Overs = "+team1_obj.getOvers()+"/15");
+                    System.out.println("Team2 score = "+team2_obj.getScore()+"/"+team2_obj.getWickets());
+                    System.out.println("Overs = "+team2_obj.getOvers()+"/15");
+
+                }
             }
             else
             {
@@ -83,6 +104,28 @@ public class GameOfCricketApplication
                 target++;
                 Play team1_play=new Play();
                 team1_play.Bat(team1,team2,team1_obj,target);
+
+                if(team1_obj.getScore()>team2_obj.getScore())
+                {
+                    int wonByWickets=10- team1_obj.getWickets();
+                    System.out.println("Team1  Won by  "+wonByWickets+" wickets.");
+                    System.out.println("Team2 score = "+team2_obj.getScore()+"/"+team2_obj.getWickets());
+                    System.out.println("Overs = "+team2_obj.getOvers()+"/15");
+                    System.out.println("Team2 score = "+team1_obj.getScore()+"/"+team1_obj.getWickets());
+                    System.out.println("Overs = "+team1_obj.getOvers()+"/15");
+
+
+                }
+                else
+                {
+                    System.out.println("Team2 Won by "+(target- team1_obj.getScore()-1)+" runs.");
+                    System.out.println("Team2 score = "+team2_obj.getScore()+"/"+team2_obj.getWickets());
+                    System.out.println("Overs = "+team2_obj.getOvers()+"/15");
+                    System.out.println("Team2 score = "+team1_obj.getScore()+"/"+team1_obj.getWickets());
+                    System.out.println("Overs = "+team1_obj.getOvers()+"/15");
+
+
+                }
             }
 
         }
@@ -97,6 +140,29 @@ public class GameOfCricketApplication
                 target++;
                 Play team1_play = new Play();
                 team1_play.Bat(team1, team2, team1_obj,target);
+
+                if(team1_obj.getScore()>team2_obj.getScore())
+                {
+                    int wonByWickets=10- team1_obj.getWickets();
+                    System.out.println("Team1  Won by  "+wonByWickets+" wickets.");
+                    System.out.println("Team2 score = "+team2_obj.getScore()+"/"+team2_obj.getWickets());
+                    System.out.println("Overs = "+team2_obj.getOvers()+"/15");
+                    System.out.println("Team2 score = "+team1_obj.getScore()+"/"+team1_obj.getWickets());
+                    System.out.println("Overs = "+team1_obj.getOvers()+"/15");
+
+
+
+                }
+                else
+                {
+                    System.out.println("Team2 Won by "+(target- team1_obj.getScore()-1)+" runs.");
+                    System.out.println("Team2 score = "+team2_obj.getScore()+"/"+team2_obj.getWickets());
+                    System.out.println("Overs = "+team2_obj.getOvers()+"/15");
+                    System.out.println("Team2 score = "+team1_obj.getScore()+"/"+team1_obj.getWickets());
+                    System.out.println("Overs = "+team1_obj.getOvers()+"/15");
+
+
+                }
             }
             else
             {
@@ -107,46 +173,89 @@ public class GameOfCricketApplication
                 target++;
                 Play team2_play = new Play();
                 team2_play.Bat(team2, team1, team2_obj,target);
+
+                if(team1_obj.getScore()<team2_obj.getScore())
+                {
+                    int wonByWickets=10- team2_obj.getWickets();
+                    System.out.println("Team2  Won by  "+wonByWickets+" wickets.");
+
+                    System.out.println("Team1 score = "+team1_obj.getScore()+"/"+team1_obj.getWickets());
+                    System.out.println("Overs = "+team1_obj.getOvers()+"/15");
+                    System.out.println("Team2 score = "+team2_obj.getScore()+"/"+team2_obj.getWickets());
+                    System.out.println("Overs = "+team2_obj.getOvers()+"/15");
+
+
+                }
+                else
+                {
+                    System.out.println(" Team1 Won by "+(target- team2_obj.getScore())+" runs.");
+                    System.out.println("All Out");
+                    System.out.println("Team1 score = "+team1_obj.getScore()+"/"+team1_obj.getWickets());
+                    System.out.println("Overs = "+team1_obj.getOvers()+"/15");
+                    System.out.println("Team2 score = "+team2_obj.getScore()+"/"+team2_obj.getWickets());
+                    System.out.println("Overs = "+team2_obj.getOvers()+"/15");
+
+                }
             }
         }
 
 
-
-        if(wonToss==team1_obj)
-        {
-            for (Player i : team1)
-            {
-                System.out.println(i.getName() + " " + i.getRuns() + " " + i.getNumber_of_balls_played() + " " + i.getWickets() + " " + i.getNumber_of_runs_given() + " " + i.getNumber_of_overs_bowled() + " " + i.getExtras());
-            }
-            System.out.println("Team 2");
-            for (Player i:team2)
-            {
-                System.out.println(i.getName()+" "+i.getRuns()+" "+i.getNumber_of_balls_played()+" "+i.getWickets()+" "+i.getNumber_of_runs_given()+" "+i.getNumber_of_overs_bowled()+" "+i.getExtras());
-            }
-        }
-        else
-        {
-            for (Player i:team2)
-            {
-                System.out.println(i.getName()+" "+i.getRuns()+" "+i.getNumber_of_balls_played()+" "+i.getWickets()+" "+i.getNumber_of_runs_given()+" "+i.getNumber_of_overs_bowled()+" "+i.getExtras());
-            }
-            System.out.println("Team 1");
-            for (Player i : team1)
-            {
-                System.out.println(i.getName() + " " + i.getRuns() + " " + i.getNumber_of_balls_played() + " " + i.getWickets() + " " + i.getNumber_of_runs_given() + " " + i.getNumber_of_overs_bowled() + " " + i.getExtras());
-            }
-        }
 
         if(wonToss==team1_obj)
         {
             if(chooseBatOrBall=="Bat")
             {
-                if(team1_obj.getScore()- team2_obj.getScore()<0)
+                for (Player i : team1)
                 {
-                    System.out.println();
+                    System.out.println(i.getName() + " " + i.getRuns() + " " + i.getNumber_of_balls_played() + " " + i.getWickets() + " " + i.getNumber_of_runs_given() + " " + i.getNumber_of_overs_bowled() + " " + i.getExtras());
+                }
+                System.out.println("Team 2");
+                for (Player i : team2)
+                {
+                    System.out.println(i.getName() + " " + i.getRuns() + " " + i.getNumber_of_balls_played() + " " + i.getWickets() + " " + i.getNumber_of_runs_given() + " " + i.getNumber_of_overs_bowled() + " " + i.getExtras());
+                }
+            }
+            else
+            {
+                for (Player i : team2)
+                {
+                    System.out.println(i.getName() + " " + i.getRuns() + " " + i.getNumber_of_balls_played() + " " + i.getWickets() + " " + i.getNumber_of_runs_given() + " " + i.getNumber_of_overs_bowled() + " " + i.getExtras());
+                }
+                System.out.println("Team 1");
+                for (Player i : team1)
+                {
+                    System.out.println(i.getName() + " " + i.getRuns() + " " + i.getNumber_of_balls_played() + " " + i.getWickets() + " " + i.getNumber_of_runs_given() + " " + i.getNumber_of_overs_bowled() + " " + i.getExtras());
                 }
             }
         }
+        else
+        {
+            if(chooseBatOrBall=="Bat")
+            {
+                for (Player i : team2)
+                {
+                    System.out.println(i.getName() + " " + i.getRuns() + " " + i.getNumber_of_balls_played() + " " + i.getWickets() + " " + i.getNumber_of_runs_given() + " " + i.getNumber_of_overs_bowled() + " " + i.getExtras());
+                }
+                System.out.println("Team 1");
+                for (Player i : team1)
+                {
+                    System.out.println(i.getName() + " " + i.getRuns() + " " + i.getNumber_of_balls_played() + " " + i.getWickets() + " " + i.getNumber_of_runs_given() + " " + i.getNumber_of_overs_bowled() + " " + i.getExtras());
+                }
+            }
+            else
+            {
+                for (Player i : team1)
+                {
+                    System.out.println(i.getName() + " " + i.getRuns() + " " + i.getNumber_of_balls_played() + " " + i.getWickets() + " " + i.getNumber_of_runs_given() + " " + i.getNumber_of_overs_bowled() + " " + i.getExtras());
+                }
+                System.out.println("Team 2");
+                for (Player i : team2)
+                {
+                    System.out.println(i.getName() + " " + i.getRuns() + " " + i.getNumber_of_balls_played() + " " + i.getWickets() + " " + i.getNumber_of_runs_given() + " " + i.getNumber_of_overs_bowled() + " " + i.getExtras());
+                }
+            }
+        }
+
 
 
     }
@@ -154,8 +263,6 @@ public class GameOfCricketApplication
     @GetMapping("/")
     public String sm() {return "Useless";}
 
-
-//    List<team> teams=new ArrayList<>();
 
 
 

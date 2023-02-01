@@ -13,6 +13,36 @@ public class Team
     }
     private int score;
 
+    private int wickets;
+
+    private float overs;
+
+    private int extras;
+
+    public int getWickets() {
+        return wickets;
+    }
+
+    public void setWickets(int wickets) {
+        this.wickets = wickets;
+    }
+
+    public float getOvers() {
+        return overs;
+    }
+
+    public void setOvers(float overs) {
+        this.overs = overs;
+    }
+
+    public int getExtras() {
+        return extras;
+    }
+
+    public void setExtras(int extras) {
+        this.extras = extras;
+    }
+
     public int getScore() {
         return score;
     }
@@ -30,6 +60,10 @@ public class Team
         {
             Player cricketer = new Player();
             cricketer.setName(String.format("Player%d", i));
+            if(i<=6)
+            cricketer.setPlayerRole(PlayerRole.Batsman);
+            else
+                cricketer.setPlayerRole(PlayerRole.Bowler);
             team.add(cricketer);
         }
         return  team;

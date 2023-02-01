@@ -10,6 +10,15 @@ public class Player
     private float number_of_overs_bowled;
     private  int extras;
 
+    private PlayerRole playerRole;
+
+    public PlayerRole getPlayerRole() {
+        return playerRole;
+    }
+
+    public void setPlayerRole(PlayerRole playerRole) {
+        this.playerRole = playerRole;
+    }
 
     public int getExtras() {
         return extras;

@@ -7,17 +7,12 @@ import static java.lang.Math.*;
 
 public class Play
 {
-
-
     List<Player> team1;
-
-
     List<Player> team2;
-    Team team1_obj=new Team();
-    Team team2_obj=new Team();
+    Team team1_obj;
 
 
-    int k;
+    int batsManOrder;
     int score;
     float total_overs;
     Player striker;
@@ -25,13 +20,14 @@ public class Play
     Player player1;
     Player player2;
 
-    int wickets;
+    int totalWickets;
 
     int runs;
 
     int bowler;
     Player bowling;
 
+    int totalExtras;
 
 
 
@@ -44,41 +40,38 @@ public class Play
         team1_obj=bats;
         team1=batting;
         team2=bowl;
-        k=0;
+        batsManOrder =0;
         score=0;
         total_overs=0;
-        striker=team1.get(k);
+        striker=team1.get(batsManOrder);
 
-        player1=team1.get(k);
-        player2=team1.get(k+1);
+        player1=team1.get(batsManOrder);
+        batsManOrder++;
+        player2=team1.get(batsManOrder);
 
-        wickets = 0;
+        totalWickets = 0;
+
+        totalExtras=0;
 
         runs = 0;
 
         bowler=5;
         bowling=team2.get(bowler);
+        RandomGenerator generateRuns=new RandomGenerator();
 
-
-        //Map<String, Integer> map = new LinkedHashMap();
-
-        while(team1.size()-1>k)
+        int ballsBowled=1;
+        while(team1.size()-1> totalWickets)
         {
 
-
-            String s = "01234567";
-            int j=1;
 
                 while (total_overs<15)
                 {
 
-                    Random random = new Random();
-                    int index = random.nextInt(s.length());
-                    char c = s.charAt(index);
+                    if(striker.getPlayerRole()==PlayerRole.Batsman)
+                        runs= generateRuns.generateBatsmanRuns();
+                    else
+                        runs=generateRuns.generateBowlerRuns();
 
-
-                     runs=  Character.getNumericValue(c);
-                    System.out.println("RUNS "+runs+" "+j);
                     switch (runs)
                     {
                         case 0:
@@ -112,21 +105,22 @@ public class Play
                 {
                     continue;
                 }
-                if(j==6)
+                if(ballsBowled==6)
                 {
                     total_overs++;
                     float round_off=(float) bowling.getNumber_of_overs_bowled();
 
                     bowling.setNumber_of_overs_bowled((float) ceil(round_off));
-                    System.out.println(bowling.getNumber_of_overs_bowled());
+
                     bowler++;
+
                     bowling=team2.get(bowler);
                     if(bowler==10)
                     {
                         bowler=4;
                     }
                 }
-                if(wickets==10)
+                if(totalWickets ==10)
                 {
                     allOut=true;
                     break;
@@ -134,14 +128,14 @@ public class Play
 
 
                 float balls=(float)(0.1)+bowling.getNumber_of_overs_bowled();
-                //System.out.println(balls);
+
                 DecimalFormat df = new DecimalFormat("#.##");
                     balls=Float.valueOf(df.format(balls));
                 bowling.setNumber_of_overs_bowled(balls);
-                if(j!=6)
-                    j++;
+                if(ballsBowled!=6)
+                    ballsBowled++;
                 else
-                    j=1;
+                    ballsBowled=1;
 
             if(target>0&&score>target)
             {
@@ -152,19 +146,15 @@ public class Play
 
             }
 
-            team1_obj.setScore(score);
+                if(total_overs==15)
+                    break;
 
+            team1_obj.setScore(score);
+            team1_obj.setExtras(totalExtras);
+            team1_obj.setWickets(totalWickets);
+            team1_obj.setOvers(total_overs);
                 if(allOut||victory)
                 {
-                    if(victory)
-                    {
-                        System.out.print("Won in ");
-                        System.out.println(total_overs);
-
-                    }
-                    else
-                    System.out.println("All Out");
-
                     break;
                 }
 
@@ -374,16 +364,19 @@ public class Play
     }
     public void wick()
         {
+
             if(striker.getName()==player1.getName())
             {
-               // System.out.println(k);
+
                 int x = player1.getNumber_of_balls_played();
                 x++;
                 player1.setNumber_of_balls_played(x);
-                wickets++;
-                player1=team1.get(k);
-                striker=team1.get(k);
-                k++;
+                totalWickets++;
+                batsManOrder++;
+                if(batsManOrder==11)
+                    return;
+                player1=team1.get(batsManOrder);
+                striker=team1.get(batsManOrder);
 
                 int bowler_wicket=bowling.getWickets();
                 bowler_wicket++;
@@ -391,16 +384,16 @@ public class Play
             }
             else
             {
-                //System.out.println("down "+k);
-                int x = player1.getNumber_of_balls_played();
+
+                int x = player2.getNumber_of_balls_played();
                 x++;
-                player1.setNumber_of_balls_played(x);
-                wickets++;
-                player2=team1.get(k);
-                striker=team1.get(k);
-
-                k++;
-
+                player2.setNumber_of_balls_played(x);
+                totalWickets++;
+                batsManOrder++;
+                if(batsManOrder==11)
+                    return;
+                player2=team1.get(batsManOrder);
+                striker=team1.get(batsManOrder);
 
                 int bowler_wicket=bowling.getWickets();
                 bowler_wicket++;
@@ -411,25 +404,28 @@ public class Play
         }
     public void wide()
     {
+
         if (striker.getName() == player1.getName())
         {
+            totalExtras++;
             int wide_run=bowling.getExtras()+1;
             bowling.setExtras(wide_run);
 
             score+=runs;
-            int bowler_runs=bowling.getNumber_of_runs_given();
-            bowler_runs+=runs;
-            bowling.setNumber_of_runs_given(bowler_runs);
+            int bowlerRuns=bowling.getNumber_of_runs_given();
+            bowlerRuns+=runs;
+            bowling.setNumber_of_runs_given(bowlerRuns);
         }
         else
         {
-            int wide_run=bowling.getExtras()+1;
-            bowling.setExtras(wide_run);
+            totalExtras++;
+            int wideRun=bowling.getExtras()+1;
+            bowling.setExtras(wideRun);
 
             score+=runs;
-            int bowler_runs=bowling.getNumber_of_runs_given();
-            bowler_runs+=runs;
-            bowling.setNumber_of_runs_given(bowler_runs);
+            int bowlerRuns=bowling.getNumber_of_runs_given();
+            bowlerRuns+=runs;
+            bowling.setNumber_of_runs_given(bowlerRuns);
         }
 
     }
