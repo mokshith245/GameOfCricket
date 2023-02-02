@@ -35,19 +35,23 @@ public class Team
         this.overs = overs;
     }
 
-    public int getExtras() {
+    public int getExtras()
+    {
         return extras;
     }
 
-    public void setExtras(int extras) {
+    public void setExtras(int extras)
+    {
         this.extras = extras;
     }
 
-    public int getScore() {
+    public int getScore()
+    {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(int score)
+    {
         this.score = score;
     }
 

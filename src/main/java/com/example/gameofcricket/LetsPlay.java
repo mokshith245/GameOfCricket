@@ -5,12 +5,11 @@ import java.util.*;
 
 import static java.lang.Math.*;
 
-public class Play
+public class LetsPlay
 {
     List<Player> team1;
     List<Player> team2;
     Team team1_obj;
-
 
     int batsManOrder;
     int score;
@@ -30,9 +29,7 @@ public class Play
     int totalExtras;
 
 
-
-
-    public void Bat(List<Player>batting,List<Player>bowl,Team bats,int target)
+    public void Bat(List<Player>batting,List<Player>bowl,Team bats,int target,int overs)
     {
         boolean allOut=false;
         boolean victory=false;
@@ -64,7 +61,7 @@ public class Play
         {
 
 
-                while (total_overs<15)
+                while (total_overs<overs)
                 {
 
                     if(striker.getPlayerRole()==PlayerRole.Batsman)
@@ -108,9 +105,9 @@ public class Play
                 if(ballsBowled==6)
                 {
                     total_overs++;
-                    float round_off=(float) bowling.getNumber_of_overs_bowled();
+                    float round_off=(float) bowling.getNumberOfOversBowled();
 
-                    bowling.setNumber_of_overs_bowled((float) ceil(round_off));
+                    bowling.setNumberOfOversBowled((float) ceil(round_off));
 
                     bowler++;
 
@@ -127,11 +124,11 @@ public class Play
                 }
 
 
-                float balls=(float)(0.1)+bowling.getNumber_of_overs_bowled();
+                float balls=(float)(0.1)+bowling.getNumberOfOversBowled();
 
                 DecimalFormat df = new DecimalFormat("#.##");
                     balls=Float.valueOf(df.format(balls));
-                bowling.setNumber_of_overs_bowled(balls);
+                bowling.setNumberOfOversBowled(balls);
                 if(ballsBowled!=6)
                     ballsBowled++;
                 else
@@ -146,7 +143,7 @@ public class Play
 
             }
 
-                if(total_overs==15)
+                if(total_overs==overs)
                     break;
 
             team1_obj.setScore(score);
@@ -168,9 +165,9 @@ public class Play
         if (striker.getName()==player1.getName())
         {
 
-            int x=player1.getNumber_of_balls_played();
+            int x=player1.getNumberOfBallsPlayed();
             x++;
-            player1.setNumber_of_balls_played(x);
+            player1.setNumberOfBallsPlayed(x);
             striker =player1;
 
 
@@ -178,9 +175,9 @@ public class Play
         else
         {
 
-            int x=player2.getNumber_of_balls_played();
+            int x=player2.getNumberOfBallsPlayed();
             x++;
-            player2.setNumber_of_balls_played(x);
+            player2.setNumberOfBallsPlayed(x);
 
             striker =player2;
 
@@ -194,34 +191,34 @@ public class Play
         if (striker.getName()==player1.getName())
         {
             score+=runs;
-            int x=player1.getNumber_of_balls_played();
-            x++;
-            player1.setNumber_of_balls_played(x);
+            int balls=player1.getNumberOfBallsPlayed();
+            balls++;
+            player1.setNumberOfBallsPlayed(balls);
             int add=player1.getRuns();
             add+=runs;
 
             player1.setRuns(add);
             striker =player2;
 
-            int bowler_runs=bowling.getNumber_of_runs_given();
-            bowler_runs+=runs;
+            int bowlerRuns=bowling.getNumberOfRunsGiven();
+            bowlerRuns+=runs;
 
-            bowling.setNumber_of_runs_given(bowler_runs);
+            bowling.setNumberOfRunsGiven(bowlerRuns);
         }
         else
         {
             score+=runs;
-            int x=player2.getNumber_of_balls_played();
-            x++;
-            player2.setNumber_of_balls_played(x);
+            int balls=player2.getNumberOfBallsPlayed();
+            balls++;
+            player2.setNumberOfBallsPlayed(balls);
             int add=player2.getRuns();
             add+=runs;
             player2.setRuns(add);
             striker =player1;
 
-            int bowler_runs=bowling.getNumber_of_runs_given();
-            bowler_runs+=runs;
-            bowling.setNumber_of_runs_given(bowler_runs);
+            int bowlerRuns=bowling.getNumberOfRunsGiven();
+            bowlerRuns+=runs;
+            bowling.setNumberOfRunsGiven(bowlerRuns);
         }
 
     }
@@ -231,32 +228,32 @@ public class Play
         if (striker.getName()==player1.getName())
         {
             score+=runs;
-            int x=player1.getNumber_of_balls_played();
-            x++;
-            player1.setNumber_of_balls_played(x);
+            int balls=player1.getNumberOfBallsPlayed();
+            balls++;
+            player1.setNumberOfBallsPlayed(balls);
             int add=player1.getRuns();
             add+=runs;
             player1.setRuns(add);
             striker =player1;
 
-            int bowler_runs=bowling.getNumber_of_runs_given();
-            bowler_runs+=runs;
-            bowling.setNumber_of_runs_given(bowler_runs);
+            int bowleRuns=bowling.getNumberOfRunsGiven();
+            bowleRuns+=runs;
+            bowling.setNumberOfRunsGiven(bowleRuns);
         }
         else
         {
             score+=runs;
-            int x=player2.getNumber_of_balls_played();
-            x++;
-            player2.setNumber_of_balls_played(x);
+            int  balls=player2.getNumberOfBallsPlayed();
+             balls++;
+            player2.setNumberOfBallsPlayed( balls);
             int add=player2.getRuns();
             add+=runs;
             player2.setRuns(add);
             striker =player2;
 
-            int bowler_runs=bowling.getNumber_of_runs_given();
-            bowler_runs+=runs;
-            bowling.setNumber_of_runs_given(bowler_runs);
+            int bowlerRuns=bowling.getNumberOfRunsGiven();
+            bowlerRuns+=runs;
+            bowling.setNumberOfRunsGiven(bowlerRuns);
         }
     }
     public void triple()
@@ -265,32 +262,32 @@ public class Play
         if (striker.getName()==player1.getName())
         {
             score+=runs;
-            int x=player1.getNumber_of_balls_played();
-            x++;
-            player1.setNumber_of_balls_played(x);
+            int balls=player1.getNumberOfBallsPlayed();
+            balls++;
+            player1.setNumberOfBallsPlayed(balls);
             int add=player1.getRuns();
             add+=runs;
             player1.setRuns(add);
             striker =player2;
 
-            int bowler_runs=bowling.getNumber_of_runs_given();
-            bowler_runs+=runs;
-            bowling.setNumber_of_runs_given(bowler_runs);
+            int bowlerRuns=bowling.getNumberOfRunsGiven();
+            bowlerRuns+=runs;
+            bowling.setNumberOfRunsGiven(bowlerRuns);
         }
         else
         {
             score+=runs;
-            int x=player2.getNumber_of_balls_played();
-            x++;
-            player2.setNumber_of_balls_played(x);
+            int balls=player2.getNumberOfBallsPlayed();
+            balls++;
+            player2.setNumberOfBallsPlayed(balls);
             int add=player2.getRuns();
             add+=runs;
             player2.setRuns(add);
             striker =player1;
 
-            int bowler_runs=bowling.getNumber_of_runs_given();
-            bowler_runs+=runs;
-            bowling.setNumber_of_runs_given(bowler_runs);
+            int bowlerRuns=bowling.getNumberOfRunsGiven();
+            bowlerRuns+=runs;
+            bowling.setNumberOfRunsGiven(bowlerRuns);
         }
 
     }
@@ -299,32 +296,32 @@ public class Play
         if (striker.getName()==player1.getName())
         {
             score+=runs;
-            int x=player1.getNumber_of_balls_played();
-            x++;
-            player1.setNumber_of_balls_played(x);
+            int balls=player1.getNumberOfBallsPlayed();
+            balls++;
+            player1.setNumberOfBallsPlayed(balls);
             int add=player1.getRuns();
             add+=runs;
             player1.setRuns(add);
             striker =player1;
 
-            int bowler_runs=bowling.getNumber_of_runs_given();
+            int bowler_runs=bowling.getNumberOfRunsGiven();
             bowler_runs+=runs;
-            bowling.setNumber_of_runs_given(bowler_runs);
+            bowling.setNumberOfRunsGiven(bowler_runs);
         }
         else
         {
             score+=runs;
-            int x=player2.getNumber_of_balls_played();
-            x++;
-            player2.setNumber_of_balls_played(x);
+            int balls=player2.getNumberOfBallsPlayed();
+            balls++;
+            player2.setNumberOfBallsPlayed(balls);
             int add=player2.getRuns();
             add+=runs;
             player2.setRuns(add);
             striker =player2;
 
-            int bowler_runs=bowling.getNumber_of_runs_given();
-            bowler_runs+=runs;
-            bowling.setNumber_of_runs_given(bowler_runs);
+            int bowlerRuns=bowling.getNumberOfRunsGiven();
+            bowlerRuns+=runs;
+            bowling.setNumberOfRunsGiven(bowlerRuns);
         }
 
     }
@@ -333,32 +330,32 @@ public class Play
         if (striker.getName() == player1.getName())
         {
             score+=runs;
-            int x = player1.getNumber_of_balls_played();
-            x++;
-            player1.setNumber_of_balls_played(x);
+            int balls = player1.getNumberOfBallsPlayed();
+            balls++;
+            player1.setNumberOfBallsPlayed(balls);
             int add = player1.getRuns();
             add += runs;
             player1.setRuns(add);
             striker = player1;
 
-            int bowler_runs=bowling.getNumber_of_runs_given();
-            bowler_runs+=runs;
-            bowling.setNumber_of_runs_given(bowler_runs);
+            int bowlerRuns=bowling.getNumberOfRunsGiven();
+            bowlerRuns+=runs;
+            bowling.setNumberOfRunsGiven(bowlerRuns);
         }
         else
         {
             score+=runs;
-            int x = player2.getNumber_of_balls_played();
-            x++;
-            player2.setNumber_of_balls_played(x);
+            int balls = player2.getNumberOfBallsPlayed();
+            balls++;
+            player2.setNumberOfBallsPlayed(balls);
             int add = player2.getRuns();
             add += runs;
             player2.setRuns(add);
             striker = player2;
 
-            int bowler_runs=bowling.getNumber_of_runs_given();
-            bowler_runs+=runs;
-            bowling.setNumber_of_runs_given(bowler_runs);
+            int bowlerRuns=bowling.getNumberOfRunsGiven();
+            bowlerRuns+=runs;
+            bowling.setNumberOfRunsGiven(bowlerRuns);
         }
 
     }
@@ -368,9 +365,9 @@ public class Play
             if(striker.getName()==player1.getName())
             {
 
-                int x = player1.getNumber_of_balls_played();
-                x++;
-                player1.setNumber_of_balls_played(x);
+                int balls = player1.getNumberOfBallsPlayed();
+                balls++;
+                player1.setNumberOfBallsPlayed(balls);
                 totalWickets++;
                 batsManOrder++;
                 if(batsManOrder==11)
@@ -378,16 +375,16 @@ public class Play
                 player1=team1.get(batsManOrder);
                 striker=team1.get(batsManOrder);
 
-                int bowler_wicket=bowling.getWickets();
-                bowler_wicket++;
-                bowling.setWickets(bowler_wicket);
+                int bowlerWicket=bowling.getWickets();
+                bowlerWicket++;
+                bowling.setWickets(bowlerWicket);
             }
             else
             {
 
-                int x = player2.getNumber_of_balls_played();
-                x++;
-                player2.setNumber_of_balls_played(x);
+                int balls = player2.getNumberOfBallsPlayed();
+                balls++;
+                player2.setNumberOfBallsPlayed(balls);
                 totalWickets++;
                 batsManOrder++;
                 if(batsManOrder==11)
@@ -395,9 +392,9 @@ public class Play
                 player2=team1.get(batsManOrder);
                 striker=team1.get(batsManOrder);
 
-                int bowler_wicket=bowling.getWickets();
-                bowler_wicket++;
-                bowling.setWickets(bowler_wicket);
+                int bowlerWicket=bowling.getWickets();
+                bowlerWicket++;
+                bowling.setWickets(bowlerWicket);
 
             }
 
@@ -412,9 +409,9 @@ public class Play
             bowling.setExtras(wide_run);
 
             score+=runs;
-            int bowlerRuns=bowling.getNumber_of_runs_given();
+            int bowlerRuns=bowling.getNumberOfRunsGiven();
             bowlerRuns+=runs;
-            bowling.setNumber_of_runs_given(bowlerRuns);
+            bowling.setNumberOfRunsGiven(bowlerRuns);
         }
         else
         {
@@ -423,9 +420,9 @@ public class Play
             bowling.setExtras(wideRun);
 
             score+=runs;
-            int bowlerRuns=bowling.getNumber_of_runs_given();
+            int bowlerRuns=bowling.getNumberOfRunsGiven();
             bowlerRuns+=runs;
-            bowling.setNumber_of_runs_given(bowlerRuns);
+            bowling.setNumberOfRunsGiven(bowlerRuns);
         }
 
     }
