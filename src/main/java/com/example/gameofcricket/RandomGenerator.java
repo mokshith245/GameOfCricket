@@ -9,7 +9,7 @@ public class RandomGenerator
     char c;
     public int generateBatsmanRuns()
     {
-        String s = "012345670123456";
+        String s = "01234567456";
         Random random = new Random();
          index = random.nextInt(s.length());
          c = s.charAt(index);
@@ -20,7 +20,7 @@ public class RandomGenerator
     }
     public int generateBowlerRuns()
     {
-        String s = "0124567";
+        String s = "012345677";
         Random random = new Random();
          index = random.nextInt(s.length());
          c = s.charAt(index);
