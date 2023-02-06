@@ -1,4 +1,4 @@
-package com.example.gameofcricket;
+package com.example.gameofcricket.cricket.util;
 
 import java.util.Random;
 
@@ -20,7 +20,7 @@ public class RandomGenerator
     }
     public int generateBowlerRuns()
     {
-        String s = "012345677";
+        String s = "0123456778";
         Random random = new Random();
          index = random.nextInt(s.length());
          c = s.charAt(index);

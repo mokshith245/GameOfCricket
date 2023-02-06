@@ -1,16 +1,29 @@
-package com.example.gameofcricket;
+package com.example.gameofcricket.cricket;
+
+import com.example.gameofcricket.cricket.player.Player;
+import com.example.gameofcricket.cricket.player.PlayerRole;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Team
 {
+    public List<Player> players =new ArrayList<Player>();
 
-    Team()
-    {
-       // create_team();
-       // print();
+    private String name;
+
+    public Team(String name) {
+        this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private int score;
 
     private int wickets;
@@ -56,8 +69,6 @@ public class Team
     }
 
     //    player cricketer=new player();
-    List<Player> team=new ArrayList<Player>();
-
     public List create_team()
     {
         for(int i=1;i<=11;i++)
@@ -68,20 +79,20 @@ public class Team
             cricketer.setPlayerRole(PlayerRole.Batsman);
             else
                 cricketer.setPlayerRole(PlayerRole.Bowler);
-            team.add(cricketer);
+            players.add(cricketer);
         }
-        return  team;
+        return  players;
 
     }
 
-    public void print()
-    {
-
-        for(Player j:team)
-        {
-            System.out.println(j.getName()+" "+j.getRuns());
-        }
-    }
+//    public void print()
+//    {
+//
+//        for(Player j:players)
+//        {
+//            System.out.println(j.getName()+" "+j.getRuns());
+//        }
+//}
 
 
 }

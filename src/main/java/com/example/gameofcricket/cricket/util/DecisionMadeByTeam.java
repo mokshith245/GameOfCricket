@@ -1,4 +1,4 @@
-package com.example.gameofcricket;
+package com.example.gameofcricket.cricket.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,12 +9,12 @@ public class DecisionMadeByTeam
     public static String getDecisionMadeByTeam()
     {
         List<String> batOrBall=new ArrayList<>();
-        batOrBall.add("Ball");
+        batOrBall.add("Bowl");
         batOrBall.add("Bat");
 
         Random randChoose = new Random();
-        String opted=batOrBall.get(randChoose.nextInt(batOrBall.size()));
-        if(opted=="Bat")
+        String optedTo=batOrBall.get(randChoose.nextInt(batOrBall.size()));
+        if(optedTo=="Bat")
         {
             System.out.println("Bat");
         }
@@ -23,6 +23,6 @@ public class DecisionMadeByTeam
             System.out.println("Bowl");
         }
 
-        return opted;
+        return optedTo;
     }
 }

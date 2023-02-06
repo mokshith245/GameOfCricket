@@ -1,4 +1,4 @@
-package com.example.gameofcricket;
+package com.example.gameofcricket.cricket.player;
 
 public class Player
 {

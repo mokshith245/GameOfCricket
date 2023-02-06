@@ -1,4 +1,8 @@
-package com.example.gameofcricket;
+package com.example.gameofcricket.cricket;
+
+import com.example.gameofcricket.cricket.player.Player;
+import com.example.gameofcricket.cricket.player.PlayerRole;
+import com.example.gameofcricket.cricket.util.RandomGenerator;
 
 import java.text.DecimalFormat;
 import java.util.*;
@@ -7,10 +11,9 @@ import static java.lang.Math.*;
 
 public class LetsPlay
 {
-    List<Player> team1;
-    List<Player> team2;
-    Team team1_obj;
-
+    //Team team1Obj;
+    Team battingTeam;
+    Team bowlingTeam;
     int batsManOrder;
     int score;
     float total_overs;
@@ -28,23 +31,29 @@ public class LetsPlay
 
     int totalExtras;
 
+    boolean noBall;
+    float balls;
 
-    public void Bat(List<Player>batting,List<Player>bowl,Team bats,int target,int overs)
+    public void Bat(Team battingTeam,Team bowlingTeam,int target,int overs)
     {
         boolean allOut=false;
+
+        noBall=false;
+
         boolean victory=false;
 
-        team1_obj=bats;
-        team1=batting;
-        team2=bowl;
+
+
+        this.battingTeam=battingTeam;
+        this.bowlingTeam=bowlingTeam;
         batsManOrder =0;
         score=0;
         total_overs=0;
-        striker=team1.get(batsManOrder);
+        striker=battingTeam.players.get(batsManOrder);
 
-        player1=team1.get(batsManOrder);
+        player1=battingTeam.players.get(batsManOrder);
         batsManOrder++;
-        player2=team1.get(batsManOrder);
+        player2=battingTeam.players.get(batsManOrder);
 
         totalWickets = 0;
 
@@ -53,18 +62,18 @@ public class LetsPlay
         runs = 0;
 
         bowler=5;
-        bowling=team2.get(bowler);
+        bowling=bowlingTeam.players.get(bowler);
         RandomGenerator generateRuns=new RandomGenerator();
 
         int ballsBowled=1;
-        while(team1.size()-1> totalWickets)
+        while(battingTeam.players.size()-1> totalWickets)
         {
 
 
                 while (total_overs<overs)
                 {
 
-                    if(striker.getPlayerRole()==PlayerRole.Batsman)
+                    if(striker.getPlayerRole()== PlayerRole.Batsman)
                         runs= generateRuns.generateBatsmanRuns();
                     else
                         runs=generateRuns.generateBowlerRuns();
@@ -98,8 +107,25 @@ public class LetsPlay
                             break;
 
                 }
+
                 if(runs==5)
                 {
+                    continue;
+                }
+                if(runs==8)
+                {
+                    noBall=true;
+                    score++;
+                    int addRuns=bowling.getNumberOfRunsGiven();
+                    addRuns++;
+                    bowling.setNumberOfRunsGiven(addRuns);
+                    int addExtras=bowling.getExtras();
+                    addExtras++;
+                    bowling.setExtras(addExtras);
+
+                    totalExtras++;
+                    battingTeam.setExtras(totalExtras);
+
                     continue;
                 }
                 if(ballsBowled==6)
@@ -111,7 +137,7 @@ public class LetsPlay
 
                     bowler++;
 
-                    bowling=team2.get(bowler);
+                    bowling=bowlingTeam.players.get(bowler);
                     if(bowler==10)
                     {
                         bowler=4;
@@ -124,7 +150,7 @@ public class LetsPlay
                 }
 
 
-                float balls=(float)(0.1)+bowling.getNumberOfOversBowled();
+                balls=(float)(0.1)+bowling.getNumberOfOversBowled();
 
                 DecimalFormat df = new DecimalFormat("#.##");
                     balls=Float.valueOf(df.format(balls));
@@ -134,11 +160,18 @@ public class LetsPlay
                 else
                     ballsBowled=1;
 
+
+                    battingTeam.setScore(score);
+                    battingTeam.setExtras(totalExtras);
+                    battingTeam.setOvers(total_overs);
             if(target>0&&score>target)
             {
+                System.out.println("Check");
                 victory=true;
                 break;
+
             }
+
 
 
             }
@@ -146,16 +179,14 @@ public class LetsPlay
                 if(total_overs==overs)
                     break;
 
-            team1_obj.setScore(score);
-            team1_obj.setExtras(totalExtras);
-            team1_obj.setWickets(totalWickets);
-            team1_obj.setOvers(total_overs);
+
                 if(allOut||victory)
                 {
                     break;
                 }
 
         }
+
 
     }
 
@@ -362,41 +393,45 @@ public class LetsPlay
     public void wick()
         {
 
-            if(striker.getName()==player1.getName())
+            if(striker.getName()==player1.getName()&&noBall==false)
             {
 
                 int balls = player1.getNumberOfBallsPlayed();
                 balls++;
                 player1.setNumberOfBallsPlayed(balls);
                 totalWickets++;
+                battingTeam.setWickets(totalWickets);
                 batsManOrder++;
                 if(batsManOrder==11)
                     return;
-                player1=team1.get(batsManOrder);
-                striker=team1.get(batsManOrder);
+                player1=battingTeam.players.get(batsManOrder);
+                striker=battingTeam.players.get(batsManOrder);
 
                 int bowlerWicket=bowling.getWickets();
                 bowlerWicket++;
                 bowling.setWickets(bowlerWicket);
             }
-            else
+            else if(noBall==false)
             {
 
                 int balls = player2.getNumberOfBallsPlayed();
                 balls++;
                 player2.setNumberOfBallsPlayed(balls);
                 totalWickets++;
+                battingTeam.setWickets(totalWickets);
                 batsManOrder++;
                 if(batsManOrder==11)
                     return;
-                player2=team1.get(batsManOrder);
-                striker=team1.get(batsManOrder);
+                player2=battingTeam.players.get(batsManOrder);
+                striker=battingTeam.players.get(batsManOrder);
 
                 int bowlerWicket=bowling.getWickets();
                 bowlerWicket++;
                 bowling.setWickets(bowlerWicket);
 
             }
+            if(noBall==true)
+                noBall=false;
 
         }
     public void wide()

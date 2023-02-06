@@ -1,5 +1,9 @@
 package com.example.gameofcricket;
 
+import com.example.gameofcricket.cricket.*;
+import com.example.gameofcricket.cricket.player.Player;
+import com.example.gameofcricket.cricket.util.DecisionMadeByTeam;
+import com.example.gameofcricket.cricket.util.Toss;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -27,23 +31,35 @@ public class GameOfCricketApplication
         {
 
 
-            Team team1Obj = new Team();
+            Team team1Obj = new Team("CSK");
 
-            List<Player> team1 = team1Obj.create_team();
+            team1Obj.players = team1Obj.create_team();
 
-            Team team2Obj = new Team();
-            List<Player> team2 = team2Obj.create_team();
+
+            Team team2Obj = new Team("SRH");
+            team2Obj.players = team2Obj.create_team();
 
 
             Team wonToss = Toss.tossTheCoin(team1Obj, team2Obj);
 
             String chooseBatOrBall = DecisionMadeByTeam.getDecisionMadeByTeam();
 
-            Simulation.startSimulation(team1Obj, team2Obj, team1, team2, wonToss, chooseBatOrBall, overs);
+            Team battingTeam,bowlingTeam;
+            if((wonToss==team1Obj&&chooseBatOrBall=="Bat") || (wonToss==team2Obj&&chooseBatOrBall=="Bowl" ))
+            {
+                battingTeam=team1Obj;
+                bowlingTeam=team2Obj;
+            }
+            else {
+                battingTeam=team2Obj;
+                bowlingTeam=team1Obj;
+            }
 
-            MatchResults.getMatchResults(team1Obj, team2Obj, wonToss, chooseBatOrBall, overs);
+            Simulation.startSimulation(battingTeam, bowlingTeam, overs);
 
-            ScoreCard.getScorecard(team1Obj, team1, team2, wonToss, chooseBatOrBall);
+            MatchResults.getMatchResults(battingTeam, bowlingTeam, overs);
+
+            ScoreCard.getScorecard(battingTeam,bowlingTeam);
 
 
 
