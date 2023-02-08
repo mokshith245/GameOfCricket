@@ -1,22 +1,17 @@
 package com.example.gameofcricket.cricket;
 
-import com.example.gameofcricket.cricket.player.Player;
-
-import java.util.List;
-import java.util.Objects;
-
 public class Simulation
 {
-    public static void startSimulation(Team battingTeam, Team bowlingTeam, int overs)
+    public static void startSimulation(Team battingTeam, Team bowlingTeam, int overs,int countMatches)
     {
 
 
 
         int target=0;
-        LetsPlay teamLetsPlay =new LetsPlay();
-        teamLetsPlay.Bat(battingTeam,bowlingTeam,target,overs);
+        Play teamPlay =new Play();
+        teamPlay.Bat(battingTeam,bowlingTeam,target,overs,countMatches);
         target= battingTeam.getScore();
         target++;
-        teamLetsPlay.Bat(bowlingTeam,battingTeam,target,overs);
+        teamPlay.Bat(bowlingTeam,battingTeam,target,overs,countMatches);
     }
 }

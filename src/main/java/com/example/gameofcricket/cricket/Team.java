@@ -69,12 +69,12 @@ public class Team
     }
 
     //    player cricketer=new player();
-    public List create_team()
+    public List create_team(String teamName)
     {
         for(int i=1;i<=11;i++)
         {
             Player cricketer = new Player();
-            cricketer.setName(String.format("Player%d", i));
+            cricketer.setName(String.format(teamName+"Player%d", i));
             if(i<=6)
             cricketer.setPlayerRole(PlayerRole.Batsman);
             else

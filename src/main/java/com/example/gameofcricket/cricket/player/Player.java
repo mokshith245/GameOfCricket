@@ -1,8 +1,14 @@
 package com.example.gameofcricket.cricket.player;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Player
 {
-
+    @Id
     private String name;
     private int runs;
     private int numberOfBallsPlayed;
