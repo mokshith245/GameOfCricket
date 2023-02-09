@@ -14,4 +14,12 @@ public class OversId implements Serializable
 
     private float overs;
 
+    @Override
+    public String toString() {
+        return "OversId{" +
+                "matchId=" + matchId +
+                ", teamName='" + teamName + '\'' +
+                ", overs=" + overs +
+                '}';
+    }
 }

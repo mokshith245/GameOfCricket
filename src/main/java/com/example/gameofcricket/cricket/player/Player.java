@@ -99,4 +99,17 @@ public class Player
         this.wickets = wickets;
     }
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", runs=" + runs +
+                ", numberOfBallsPlayed=" + numberOfBallsPlayed +
+                ", wickets=" + wickets +
+                ", numberOfOversBowled=" + numberOfOversBowled +
+                ", extras=" + extras +
+                ", numberOfRunsGiven=" + numberOfRunsGiven +
+                ", playerRole=" + playerRole +
+                '}';
+    }
 }

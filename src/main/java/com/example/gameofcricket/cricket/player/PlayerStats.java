@@ -65,4 +65,17 @@ public class PlayerStats
     public void setHighestScore(int highestScore) {
         this.highestScore = highestScore;
     }
+
+    @Override
+    public String toString() {
+        return "PlayerStats{" +
+                "name='" + name + '\'' +
+                ", runs=" + runs +
+                ", halfCentury=" + halfCentury +
+                ", century=" + century +
+                ", innings=" + innings +
+                ", highestScore=" + highestScore +
+                ", wickets=" + wickets +
+                '}';
+    }
 }

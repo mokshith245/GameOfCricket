@@ -18,32 +18,31 @@ public class Play {
     boolean noBall;
     public void Bat(Team battingTeam, Team bowlingTeam, int target, int oversForMatch,int countMatches) {
         float checkOvers=0;
+        batsManOrder = 0;
+        score = 0;
+        total_overs = 0;
+        totalWickets = 0;
+        totalExtras = 0;
+        runs = 0;
+        bowler = 5;
+        int ballsBowled = 1;
         boolean allOut = false;
         noBall = false;
         boolean victory = false;
         this.battingTeam = battingTeam;
         this.bowlingTeam = bowlingTeam;
-        batsManOrder = 0;
-        score = 0;
-        total_overs = 0;
         striker = battingTeam.players.get(batsManOrder);
         player1 = battingTeam.players.get(batsManOrder);
         batsManOrder++;
         player2 = battingTeam.players.get(batsManOrder);
-        totalWickets = 0;
-        totalExtras = 0;
-        runs = 0;
-        bowler = 5;
         bowling = bowlingTeam.players.get(bowler);
         RandomGenerator generateRuns = new RandomGenerator();
-        int ballsBowled = 1;
         while (battingTeam.players.size() - 1 > totalWickets) {
             while (total_overs < oversForMatch) {
                 Overs overs=new Overs();
                 overs.setMatchId(countMatches);
 
                 overs.setTeamName(battingTeam.getName());
-                System.out.println(overs.getTeamName());
                 if (striker.getPlayerRole() == PlayerRole.Batsman)
                     runs = generateRuns.generateBatsmanRuns();
                 else
@@ -115,29 +114,28 @@ public class Play {
                 bowling.setNumberOfOversBowled(balls);
                 if (ballsBowled != 6) {
                     checkOvers = (float) (0.1) +checkOvers;
-                    //System.out.println(checkOvers);
+                    DecimalFormat format = new DecimalFormat("#.##");
+                    checkOvers=Float.valueOf(format.format(checkOvers));
                     overs.setOvers(checkOvers);
                     overs.setScore(score);
                     ballsBowled++;
                 }
                 else {
                     checkOvers = (float) (0.1) +checkOvers;
-                  //  System.out.println(checkOvers);
+                    DecimalFormat format = new DecimalFormat("#.##");
+                    checkOvers=Float.valueOf(format.format(checkOvers));
                     overs.setOvers(checkOvers);
-                    System.out.println(score);
                     overs.setScore(score);
                     checkOvers=(float)ceil(checkOvers);
                     ballsBowled = 1;
                 }
 
                 overs.setWickets(totalWickets);
-                System.out.println(overs.getTeamName()+" "+overs.getOvers());
                 GameOfCricketApplication.updateScoreAfterEveryBallRepository.save(overs);
                 battingTeam.setScore(score);
                 battingTeam.setExtras(totalExtras);
                 battingTeam.setOvers(total_overs);
                 if (target > 0 && score > target) {
-                    System.out.println("Check");
                     victory = true;
                     break;
                 }

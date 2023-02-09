@@ -1,5 +1,7 @@
 package com.example.gameofcricket;
 import com.example.gameofcricket.cricket.*;
+import com.example.gameofcricket.cricket.player.Player;
+import com.example.gameofcricket.cricket.player.PlayerStats;
 import com.example.gameofcricket.cricket.player.UpdatePlayerStats;
 import com.example.gameofcricket.cricket.util.DecisionMadeByTeam;
 import com.example.gameofcricket.cricket.util.Toss;
@@ -10,6 +12,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 import java.util.Scanner;
 @SpringBootApplication
 @RestController
@@ -50,8 +54,14 @@ public class GameOfCricketApplication
             }
             Simulation.startSimulation(battingTeam, bowlingTeam, overs,countMatches);
             MatchResults.getMatchResults(battingTeam, bowlingTeam, overs);
-            UpdatePlayerStats.updatePlayerStats(battingTeam,bowlingTeam,countMatches);
             ScoreCard.getScorecard(battingTeam,bowlingTeam);
+            UpdatePlayerStats.updatePlayerStats(battingTeam,bowlingTeam,countMatches);
+            List<PlayerStats> playerStats=GameOfCricketApplication.playerStatsRepository.getPlayerStatsByCenturyWhereHalfcentury();
+            List<Player> p=GameOfCricketApplication.playerRepository.getHighestRunsInTeam();
+            p.forEach(e->{
+                System.out.println("siva");
+                System.out.println(e);
+            });
             System.out.println("Enter 1 for Next Match Simulation");
             System.out.println("Enter 0 to exit Simulation");
             check=sc.nextInt();
