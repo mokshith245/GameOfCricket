@@ -1,8 +1,10 @@
-package com.example.gameofcricket.cricket;
+package com.example.gameofcricket.cricket.Results;
+
+import com.example.gameofcricket.cricket.Team;
 
 public class MatchResults
 {
-    public static void getMatchResults(Team battingTeam, Team bowlingTeam,int overs)
+    public static void getMatchResults(Team battingTeam, Team bowlingTeam, int overs)
     {
         if (battingTeam.getScore() < bowlingTeam.getScore()) {
             int wonByWickets = 10 - bowlingTeam.getWickets();

@@ -1,14 +1,13 @@
 package com.example.gameofcricket.dao;
-import jakarta.persistence.Id;
+
 import lombok.EqualsAndHashCode;
+
 import java.io.Serializable;
+
 @EqualsAndHashCode
-public class OversId implements Serializable
+public class TeamId implements Serializable
 {
     private int matchId;
-    private String teamName;
-    private float overs;
-
-
+    private String name;
 
 }

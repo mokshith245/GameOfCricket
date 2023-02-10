@@ -1,22 +1,24 @@
 package com.example.gameofcricket.cricket;
-
 import com.example.gameofcricket.GameOfCricketApplication;
+import com.example.gameofcricket.cricket.Results.ScoreAtParticularOver;
 import com.example.gameofcricket.cricket.player.Player;
 import com.example.gameofcricket.cricket.player.PlayerRole;
 import com.example.gameofcricket.cricket.util.RandomGenerator;
-import org.hibernate.sql.ast.tree.expression.Over;
-
+import org.springframework.stereotype.Component;
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 import static java.lang.Math.*;
-
+@Component
 public class Play {
+
     Team battingTeam, bowlingTeam;
     int batsManOrder, score, totalWickets, runs, bowler, totalExtras;
     float total_overs, balls;
     Player striker, player1, player2, bowling;
     boolean noBall;
     public void Bat(Team battingTeam, Team bowlingTeam, int target, int oversForMatch,int countMatches) {
+        battingTeam.setMatchId(countMatches);
         float checkOvers=0;
         batsManOrder = 0;
         score = 0;
@@ -39,10 +41,10 @@ public class Play {
         RandomGenerator generateRuns = new RandomGenerator();
         while (battingTeam.players.size() - 1 > totalWickets) {
             while (total_overs < oversForMatch) {
-                Overs overs=new Overs();
-                overs.setMatchId(countMatches);
+                ScoreAtParticularOver scoreAtParticularOver =new ScoreAtParticularOver();
+                scoreAtParticularOver.setMatchId(countMatches);
 
-                overs.setTeamName(battingTeam.getName());
+                scoreAtParticularOver.setTeamName(battingTeam.getName());
                 if (striker.getPlayerRole() == PlayerRole.Batsman)
                     runs = generateRuns.generateBatsmanRuns();
                 else
@@ -77,8 +79,8 @@ public class Play {
                         break;
                 }
                 if (runs == 5) {
-                    overs.setOvers(checkOvers);
-                    overs.setScore(score);
+                    scoreAtParticularOver.setOvers(checkOvers);
+                    scoreAtParticularOver.setScore(score);
                     continue;
                 }
                 if (runs == 8) {
@@ -116,22 +118,21 @@ public class Play {
                     checkOvers = (float) (0.1) +checkOvers;
                     DecimalFormat format = new DecimalFormat("#.##");
                     checkOvers=Float.valueOf(format.format(checkOvers));
-                    overs.setOvers(checkOvers);
-                    overs.setScore(score);
+                    scoreAtParticularOver.setOvers(checkOvers);
+                    scoreAtParticularOver.setScore(score);
                     ballsBowled++;
                 }
                 else {
                     checkOvers = (float) (0.1) +checkOvers;
                     DecimalFormat format = new DecimalFormat("#.##");
                     checkOvers=Float.valueOf(format.format(checkOvers));
-                    overs.setOvers(checkOvers);
-                    overs.setScore(score);
+                    scoreAtParticularOver.setOvers(checkOvers);
+                    scoreAtParticularOver.setScore(score);
                     checkOvers=(float)ceil(checkOvers);
                     ballsBowled = 1;
                 }
-
-                overs.setWickets(totalWickets);
-                GameOfCricketApplication.updateScoreAfterEveryBallRepository.save(overs);
+                scoreAtParticularOver.setWickets(totalWickets);
+                GameOfCricketApplication.updateScoreAfterEveryBallRepository.save(scoreAtParticularOver);
                 battingTeam.setScore(score);
                 battingTeam.setExtras(totalExtras);
                 battingTeam.setOvers(total_overs);
@@ -146,6 +147,9 @@ public class Play {
                 break;
             }
         }
+
+
+
     }
     public void dot() {
         int x = striker.getNumberOfBallsPlayed();
@@ -154,7 +158,7 @@ public class Play {
     }
     public void wick() {
 
-        if (striker.getName() == player1.getName() && noBall == false) {
+        if (Objects.equals(striker.getName(), player1.getName()) && !noBall) {
 
             int balls = player1.getNumberOfBallsPlayed();
             balls++;
@@ -169,7 +173,7 @@ public class Play {
             int bowlerWicket = bowling.getWickets();
             bowlerWicket++;
             bowling.setWickets(bowlerWicket);
-        } else if (noBall == false) {
+        } else if (noBall) {
 
             int balls = player2.getNumberOfBallsPlayed();
             balls++;
@@ -185,12 +189,12 @@ public class Play {
             bowlerWicket++;
             bowling.setWickets(bowlerWicket);
         }
-        if (noBall == true)
+        if (noBall)
             noBall = false;
     }
     public void wide() {
 
-        if (striker.getName() == player1.getName()) {
+        if (Objects.equals(striker.getName(), player1.getName())) {
             totalExtras++;
             int wide_run = bowling.getExtras() + 1;
             bowling.setExtras(wide_run);

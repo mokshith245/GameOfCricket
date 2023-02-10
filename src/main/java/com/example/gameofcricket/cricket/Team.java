@@ -1,37 +1,46 @@
 package com.example.gameofcricket.cricket;
-
 import com.example.gameofcricket.cricket.player.Player;
 import com.example.gameofcricket.cricket.player.PlayerRole;
+import com.example.gameofcricket.dao.TeamId;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
+@IdClass(TeamId.class)
 public class Team
 {
+    @Id
+    private int matchId;
+    @Transient
     public List<Player> players =new ArrayList<Player>();
-
+    @Id
     private String name;
-
+    private int score;
+    private int wickets;
+    private float overs;
+    private int extras;
     public Team(String name) {
         this.name = name;
     }
+    public Team() {
 
-    public String getName() {
-        return name;
+    }
+
+    public int getMatchId() {
+        return matchId;
+    }
+
+    public void setMatchId(int matchId) {
+        this.matchId = matchId;
     }
 
     public void setName(String name) {
         this.name = name;
     }
-
-    private int score;
-
-    private int wickets;
-
-    private float overs;
-
-    private int extras;
-
+    public String getName() {
+        return name;
+    }
     public int getWickets() {
         return wickets;
     }
@@ -62,12 +71,10 @@ public class Team
     {
         return score;
     }
-
     public void setScore(int score)
     {
         this.score = score;
     }
-
     //    player cricketer=new player();
     public List create_team(String teamName)
     {
@@ -82,17 +89,17 @@ public class Team
             players.add(cricketer);
         }
         return  players;
-
     }
-
-//    public void print()
-//    {
-//
-//        for(Player j:players)
-//        {
-//            System.out.println(j.getName()+" "+j.getRuns());
-//        }
-//}
-
-
+    @Override
+    public String toString() {
+        return "Team{" +
+                "matchId=" + matchId +
+                ", players=" + players +
+                ", name='" + name + '\'' +
+                ", score=" + score +
+                ", wickets=" + wickets +
+                ", overs=" + overs +
+                ", extras=" + extras +
+                '}';
+    }
 }

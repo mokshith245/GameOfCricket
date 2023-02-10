@@ -1,4 +1,4 @@
-package com.example.gameofcricket.cricket;
+package com.example.gameofcricket.cricket.Results;
 
 import com.example.gameofcricket.dao.OversId;
 import jakarta.persistence.Entity;
@@ -7,7 +7,7 @@ import jakarta.persistence.IdClass;
 
 @Entity
 @IdClass(OversId.class)
-public class Overs
+public class ScoreAtParticularOver
 {
     @Id
     private String teamName;
@@ -58,5 +58,16 @@ public class Overs
 
     public void setWickets(int wickets) {
         this.wickets = wickets;
+    }
+
+    @Override
+    public String toString() {
+        return "Overs{" +
+                "teamName='" + teamName + '\'' +
+                ", overs=" + overs +
+                ", matchId=" + matchId +
+                ", score=" + score +
+                ", wickets=" + wickets +
+                '}';
     }
 }

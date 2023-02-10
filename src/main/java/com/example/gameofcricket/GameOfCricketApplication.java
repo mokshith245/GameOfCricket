@@ -1,33 +1,41 @@
 package com.example.gameofcricket;
 import com.example.gameofcricket.cricket.*;
-import com.example.gameofcricket.cricket.player.Player;
-import com.example.gameofcricket.cricket.player.PlayerStats;
+import com.example.gameofcricket.cricket.Results.MatchResults;
+import com.example.gameofcricket.cricket.Results.ScoreCard;
 import com.example.gameofcricket.cricket.player.UpdatePlayerStats;
 import com.example.gameofcricket.cricket.util.DecisionMadeByTeam;
 import com.example.gameofcricket.cricket.util.Toss;
 import com.example.gameofcricket.dao.PlayerRepository;
 import com.example.gameofcricket.dao.PlayerStatsRepository;
+import com.example.gameofcricket.dao.TeamStats;
 import com.example.gameofcricket.dao.UpdateScoreAfterEveryBallRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 import java.util.Scanner;
 @SpringBootApplication
 @RestController
 public class GameOfCricketApplication
 {
+    @Autowired
+    public static TeamStats teamStats;
+    @Autowired
     public static PlayerRepository playerRepository;
+    @Autowired
     public static PlayerStatsRepository playerStatsRepository;
+    @Autowired
     public static UpdateScoreAfterEveryBallRepository updateScoreAfterEveryBallRepository;
+
     public static void main(String[] args)
     {
         ConfigurableApplicationContext context= SpringApplication.run(GameOfCricketApplication.class, args);
         playerRepository = context.getBean(PlayerRepository.class);
         playerStatsRepository=context.getBean(PlayerStatsRepository.class);
         updateScoreAfterEveryBallRepository=context.getBean(UpdateScoreAfterEveryBallRepository.class);
+        teamStats=context.getBean(TeamStats.class);
         Scanner sc= new Scanner(System.in);
         System.out.print("Enter number of Overs ");
         int overs= sc.nextInt();
@@ -56,10 +64,18 @@ public class GameOfCricketApplication
             MatchResults.getMatchResults(battingTeam, bowlingTeam, overs);
             ScoreCard.getScorecard(battingTeam,bowlingTeam);
             UpdatePlayerStats.updatePlayerStats(battingTeam,bowlingTeam,countMatches);
-            List<PlayerStats> playerStats=GameOfCricketApplication.playerStatsRepository.getPlayerStatsByCenturyWhereHalfcentury();
-            List<Player> p=GameOfCricketApplication.playerRepository.getHighestRunsInTeam();
-            p.forEach(e->{
-                System.out.println("siva");
+//            List<PlayerStats> playerStats=playerStatsRepository.getPlayerStatsByCenturyWhereHalfcentury();
+//            List<Player> p=GameOfCricketApplication.playerRepository.getHighestRunsInTeam();
+//            p.forEach(e->{
+//                System.out.println("siva");
+//                System.out.println(e);
+//            });
+//            List<ScoreAtParticularOver> scoreAtThisOver=updateScoreAfterEveryBallRepository.getScoreAt(2,"CSK",(float) 5.2);
+//            scoreAtThisOver.forEach(e->{
+//                System.out.println(e);
+//            });
+            List<Team> getDetails=teamStats.getMatchStatsByMatchId(3);
+            getDetails.forEach(e->{
                 System.out.println(e);
             });
             System.out.println("Enter 1 for Next Match Simulation");

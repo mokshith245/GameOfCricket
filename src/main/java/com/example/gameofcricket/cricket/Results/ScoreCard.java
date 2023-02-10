@@ -1,11 +1,9 @@
-package com.example.gameofcricket.cricket;
-
+package com.example.gameofcricket.cricket.Results;
 import com.example.gameofcricket.GameOfCricketApplication;
+import com.example.gameofcricket.cricket.Team;
 import com.example.gameofcricket.cricket.player.Player;
-
-import java.util.List;
-
 public class ScoreCard {
+
     public static void getScorecard(Team battingTeam, Team bowlingTeam)
     {
         System.out.println(battingTeam.getName());

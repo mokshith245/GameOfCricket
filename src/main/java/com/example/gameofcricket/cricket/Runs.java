@@ -2,11 +2,13 @@ package com.example.gameofcricket.cricket;
 
 import com.example.gameofcricket.cricket.player.Player;
 
+import java.util.Objects;
+
 public class Runs
 {
     public static Player Single(Player player1,Player player2,Player striker,Player bowling,int runs)
     {
-        if (striker.getName()==player1.getName())
+        if (Objects.equals(striker.getName(), player1.getName()))
         {
 
             int balls=player1.getNumberOfBallsPlayed();
@@ -39,7 +41,7 @@ public class Runs
     public static Player doubles(Player player1,Player player2,Player striker,Player bowling,int runs)
     {
 
-        if (striker.getName()==player1.getName())
+        if (Objects.equals(striker.getName(), player1.getName()))
         {
             int balls=player1.getNumberOfBallsPlayed();
             balls++;
@@ -70,7 +72,7 @@ public class Runs
     public static Player triple(Player player1,Player player2,Player striker,Player bowling,int runs)
     {
 
-        if (striker.getName()==player1.getName())
+        if (Objects.equals(striker.getName(), player1.getName()))
         {
             int balls=player1.getNumberOfBallsPlayed();
             balls++;
@@ -101,7 +103,7 @@ public class Runs
     }
     public static Player four(Player player1,Player player2,Player striker,Player bowling,int runs)
     {
-        if (striker.getName()==player1.getName())
+        if (Objects.equals(striker.getName(), player1.getName()))
         {
             int balls=player1.getNumberOfBallsPlayed();
             balls++;
@@ -132,7 +134,7 @@ public class Runs
     }
     public static Player six(Player player1,Player player2,Player striker,Player bowling,int runs)
     {
-        if (striker.getName() == player1.getName())
+        if (Objects.equals(striker.getName(), player1.getName()))
         {
             int balls = player1.getNumberOfBallsPlayed();
             balls++;
