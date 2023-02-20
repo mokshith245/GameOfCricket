@@ -5,9 +5,8 @@ import lombok.EqualsAndHashCode;
 import java.io.Serializable;
 
 @EqualsAndHashCode
-public class TeamId implements Serializable
+public class GameStatsId implements Serializable
 {
+    private String teamName;
     private int matchId;
-    private String name;
-
 }

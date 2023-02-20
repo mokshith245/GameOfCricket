@@ -1,24 +1,26 @@
 package com.example.gameofcricket.cricket;
 import com.example.gameofcricket.cricket.player.Player;
 import com.example.gameofcricket.cricket.player.PlayerRole;
-import com.example.gameofcricket.dao.TeamId;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-@IdClass(TeamId.class)
+
 public class Team
 {
-    @Id
-    private int matchId;
     @Transient
     public List<Player> players =new ArrayList<Player>();
     @Id
     private String name;
+    private int numberOfMatchesPlayed;
+    @Transient
     private int score;
+    @Transient
     private int wickets;
+    @Transient
     private float overs;
+    @Transient
     private int extras;
     public Team(String name) {
         this.name = name;
@@ -27,12 +29,12 @@ public class Team
 
     }
 
-    public int getMatchId() {
-        return matchId;
+    public int getNumberOfMatchesPlayed() {
+        return numberOfMatchesPlayed;
     }
 
-    public void setMatchId(int matchId) {
-        this.matchId = matchId;
+    public void setNumberOfMatchesPlayed(int numberOfMatchesPlayed) {
+        this.numberOfMatchesPlayed = numberOfMatchesPlayed;
     }
 
     public void setName(String name) {
@@ -76,12 +78,13 @@ public class Team
         this.score = score;
     }
     //    player cricketer=new player();
-    public List create_team(String teamName)
+    public List create_team()
     {
         for(int i=1;i<=11;i++)
         {
             Player cricketer = new Player();
-            cricketer.setName(String.format(teamName+"Player%d", i));
+
+            cricketer.setName(String.format("Player%d", i));
             if(i<=6)
             cricketer.setPlayerRole(PlayerRole.Batsman);
             else
@@ -93,7 +96,6 @@ public class Team
     @Override
     public String toString() {
         return "Team{" +
-                "matchId=" + matchId +
                 ", players=" + players +
                 ", name='" + name + '\'' +
                 ", score=" + score +

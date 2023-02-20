@@ -1,21 +1,32 @@
 package com.example.gameofcricket.cricket.player;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class PlayerStats
 {
     @Id
-    private String name;
+    private String teamName;
+    private String playerName;
     private int runs,halfCentury, century;
     private int innings,highestScore,wickets;
-    public String getName() {
-        return name;
+
+
+
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String name) {
+        this.playerName = name;
     }
 
     public int getRuns() {
@@ -69,7 +80,7 @@ public class PlayerStats
     @Override
     public String toString() {
         return "PlayerStats{" +
-                "name='" + name + '\'' +
+                "name='" + playerName + '\'' +
                 ", runs=" + runs +
                 ", halfCentury=" + halfCentury +
                 ", century=" + century +

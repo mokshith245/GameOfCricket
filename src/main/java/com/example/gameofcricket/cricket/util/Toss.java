@@ -1,11 +1,8 @@
 package com.example.gameofcricket.cricket.util;
-
 import com.example.gameofcricket.cricket.Team;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 public class Toss
 {
     public static Team tossTheCoin(Team team1Obj, Team team2Obj)

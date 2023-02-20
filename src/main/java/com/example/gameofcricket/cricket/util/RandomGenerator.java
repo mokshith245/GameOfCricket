@@ -9,12 +9,10 @@ public class RandomGenerator
     char c;
     public int generateBatsmanRuns()
     {
-        String s = "01234567456";
+        String s = "0123456770123456";
         Random random = new Random();
          index = random.nextInt(s.length());
          c = s.charAt(index);
-
-
           runs=Character.getNumericValue(c);
          return runs;
     }
@@ -24,10 +22,9 @@ public class RandomGenerator
         Random random = new Random();
          index = random.nextInt(s.length());
          c = s.charAt(index);
-
-
          runs=Character.getNumericValue(c);
         return runs;
     }
+
 
 }

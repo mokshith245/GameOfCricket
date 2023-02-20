@@ -18,7 +18,7 @@ public class Play {
     Player striker, player1, player2, bowling;
     boolean noBall;
     public void Bat(Team battingTeam, Team bowlingTeam, int target, int oversForMatch,int countMatches) {
-        battingTeam.setMatchId(countMatches);
+        //battingTeam.setMatchId(countMatches);
         float checkOvers=0;
         batsManOrder = 0;
         score = 0;

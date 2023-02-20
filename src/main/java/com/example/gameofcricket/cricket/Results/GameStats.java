@@ -1,0 +1,77 @@
+package com.example.gameofcricket.cricket.Results;
+
+import com.example.gameofcricket.dao.GameStatsId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
+
+@Entity
+@IdClass(GameStatsId.class)
+public class GameStats
+{
+    @Id
+    private String teamName;
+    private int score;
+    private String won;
+    @Id
+    private int matchId;
+    private float overs;
+    private int wickets;
+    private int extras;
+
+    public int getExtras() {
+        return extras;
+    }
+
+    public void setExtras(int extras) {
+        this.extras = extras;
+    }
+
+    public int getWickets() {
+        return wickets;
+    }
+
+    public void setWickets(int wickets) {
+        this.wickets = wickets;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public float getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public String getWon() {
+        return won;
+    }
+
+    public void setWon(String won) {
+        this.won = won;
+    }
+
+    public int getMatchId() {
+        return matchId;
+    }
+
+    public void setMatchId(int matchId) {
+        this.matchId = matchId;
+    }
+
+    public float getOvers() {
+        return overs;
+    }
+
+    public void setOvers(float overs) {
+        this.overs = overs;
+    }
+}

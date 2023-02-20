@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
-public interface PlayerRepository extends CrudRepository<Player,String>
+public interface PlayerRepository extends CrudRepository<Player,PlayerId>
 {
     @Query(
             value = "select * from player WHERE name like 'CSK%' AND runs = ( SELECT MAX(runs) FROM player )",

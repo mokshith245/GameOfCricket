@@ -1,28 +1,40 @@
 package com.example.gameofcricket.cricket.player;
 import com.example.gameofcricket.GameOfCricketApplication;
 import com.example.gameofcricket.cricket.Team;
-import com.example.gameofcricket.dao.PlayerStatsRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 public class UpdatePlayerStats {
     public static List<PlayerStats> playerStats = new ArrayList<>();
-    public static void updatePlayerStats(Team battingTeam, Team bowlingTeam, int countMatches) {
-        if (countMatches == 1) {
+    public static void updatePlayerStats(Team battingTeam, Team bowlingTeam) {
+        Optional<PlayerStats> optionalPlayerStatsBattingTeam = GameOfCricketApplication.playerStatsRepository.findById(battingTeam.getName());
+        Optional<PlayerStats> optionalPlayerStatsBowlingTeam = GameOfCricketApplication.playerStatsRepository.findById(battingTeam.getName());
+
+
+        if (optionalPlayerStatsBattingTeam.isEmpty()) {
             UpdatePlayerStats.updateForFirstMatch(battingTeam);
-            UpdatePlayerStats.updateForFirstMatch(bowlingTeam);
-        } else {
+
+        } else if(optionalPlayerStatsBattingTeam.isPresent()) {
             UpdatePlayerStats.updateForMatches(battingTeam);
-            UpdatePlayerStats.updateForMatches(bowlingTeam);
+
+        }
+        else if(optionalPlayerStatsBowlingTeam.isEmpty())
+        {
+            UpdatePlayerStats.updateForFirstMatch(bowlingTeam);
+        }
+        else if(optionalPlayerStatsBowlingTeam.isPresent())
+        {
+            updateForMatches(bowlingTeam);
         }
     }
     public static void updateForFirstMatch(Team team) {
         for (Player i : team.players) {
             PlayerStats newPlayer = new PlayerStats();
-            newPlayer.setName(i.getName());
+            newPlayer.setPlayerName(i.getName());
             newPlayer.setRuns(i.getRuns());
             newPlayer.setWickets(i.getWickets());
             newPlayer.setHighestScore(i.getRuns());
+            newPlayer.setTeamName(i.getTeamName());
             if (i.getRuns() >= 50 && i.getRuns() < 100) {
                 newPlayer.setHalfCentury(1);
             } else if (i.getRuns() >= 100) {
@@ -39,9 +51,9 @@ public class UpdatePlayerStats {
         for (PlayerStats j : playerStats) {
 
             for (Player i : team.players) {
-                Optional<PlayerStats> optionalPlayerStats = GameOfCricketApplication.playerStatsRepository.findById(j.getName());
+                Optional<PlayerStats> optionalPlayerStats = GameOfCricketApplication.playerStatsRepository.findById (j.getTeamName());
                 PlayerStats object = optionalPlayerStats.get();
-                if (i.getName().equals(object.getName())) {
+                if (i.getName().equals(object.getPlayerName())) {
                     changeValue = object.getRuns();
                     changeValue += i.getRuns();
                     object.setRuns(changeValue);

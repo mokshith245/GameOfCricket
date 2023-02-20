@@ -1,15 +1,18 @@
 package com.example.gameofcricket.cricket.player;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.gameofcricket.cricket.Team;
+import com.example.gameofcricket.dao.PlayerId;
+import jakarta.persistence.*;
 
 @Entity
+@IdClass(PlayerId.class)
 public class Player
 {
     @Id
+    private int matchId;
+    @Id
     private String name;
+    @Id
+    private String teamName;
     private int runs;
     private int numberOfBallsPlayed;
     private int wickets;
@@ -17,7 +20,25 @@ public class Player
     private  int extras;
 
     private int numberOfRunsGiven;
+
     private PlayerRole playerRole;
+
+    public int getMatchId() {
+        return matchId;
+    }
+
+    public void setMatchId(int matchId) {
+        this.matchId = matchId;
+    }
+
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
 
     public PlayerRole getPlayerRole()
     {
