@@ -1,4 +1,4 @@
-package com.example.gameofcricket.cricket.Results;
+package com.example.gameofcricket.cricket.results;
 
 import com.example.gameofcricket.dao.OversId;
 import jakarta.persistence.Entity;

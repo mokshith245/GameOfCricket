@@ -6,11 +6,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
-public interface TeamStats extends CrudRepository<Team,String>
+public interface TeamRepository extends CrudRepository<Team,String>
 {
     @Query(
-            value = "select * from team where match_id=:i",
+            value = "select * from team where name=:i",
             nativeQuery = true
     )
-    public List<Team> getMatchStatsByMatchId(@Param("i")int i);
+    public List<Team> getTeamStatsByTeamName(@Param("i")String i);
 }

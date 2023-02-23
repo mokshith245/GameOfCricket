@@ -15,10 +15,10 @@ public class Simulation
         int target=0;
         Play teamPlay =new Play();
         teamPlay.Bat(battingTeam,bowlingTeam,target,overs,countMatches);
-        GameOfCricketApplication.teamStats.save(battingTeam);
+        GameOfCricketApplication.teamRepository.save(battingTeam);
         target= battingTeam.getScore();
         target++;
         teamPlay.Bat(bowlingTeam,battingTeam,target,overs,countMatches);
-        GameOfCricketApplication.teamStats.save(bowlingTeam);
+        GameOfCricketApplication.teamRepository.save(bowlingTeam);
     }
 }

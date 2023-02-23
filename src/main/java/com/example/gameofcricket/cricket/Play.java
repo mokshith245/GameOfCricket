@@ -1,13 +1,12 @@
 package com.example.gameofcricket.cricket;
 import com.example.gameofcricket.GameOfCricketApplication;
-import com.example.gameofcricket.cricket.Results.ScoreAtParticularOver;
+import com.example.gameofcricket.cricket.results.ScoreAtParticularOver;
 import com.example.gameofcricket.cricket.player.Player;
 import com.example.gameofcricket.cricket.player.PlayerRole;
 import com.example.gameofcricket.cricket.util.RandomGenerator;
 import org.springframework.stereotype.Component;
 import java.text.DecimalFormat;
 import java.util.Objects;
-
 import static java.lang.Math.*;
 @Component
 public class Play {

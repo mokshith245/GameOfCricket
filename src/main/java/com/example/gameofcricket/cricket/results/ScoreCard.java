@@ -1,4 +1,4 @@
-package com.example.gameofcricket.cricket.Results;
+package com.example.gameofcricket.cricket.results;
 import com.example.gameofcricket.GameOfCricketApplication;
 import com.example.gameofcricket.cricket.Team;
 import com.example.gameofcricket.cricket.player.Player;

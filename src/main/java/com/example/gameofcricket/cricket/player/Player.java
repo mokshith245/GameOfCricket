@@ -1,7 +1,9 @@
 package com.example.gameofcricket.cricket.player;
-import com.example.gameofcricket.cricket.Team;
+
 import com.example.gameofcricket.dao.PlayerId;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 
 @Entity
 @IdClass(PlayerId.class)

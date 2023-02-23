@@ -1,12 +1,15 @@
 package com.example.gameofcricket.cricket.player;
 
+import com.example.gameofcricket.dao.PlayerStatsId;
 import jakarta.persistence.*;
 
 @Entity
+@IdClass(PlayerStatsId.class)
 public class PlayerStats
 {
     @Id
     private String teamName;
+    @Id
     private String playerName;
     private int runs,halfCentury, century;
     private int innings,highestScore,wickets;

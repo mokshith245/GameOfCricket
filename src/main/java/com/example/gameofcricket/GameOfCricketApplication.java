@@ -1,31 +1,26 @@
 package com.example.gameofcricket;
-import com.example.gameofcricket.cricket.*;
-import com.example.gameofcricket.cricket.Results.MatchResults;
-import com.example.gameofcricket.cricket.Results.ScoreAtParticularOver;
-import com.example.gameofcricket.cricket.Results.ScoreCard;
+import com.example.gameofcricket.cricket.Simulation;
+import com.example.gameofcricket.cricket.Team;
 import com.example.gameofcricket.cricket.player.UpdatePlayerStats;
+import com.example.gameofcricket.cricket.results.MatchResults;
+import com.example.gameofcricket.cricket.results.ScoreCard;
 import com.example.gameofcricket.cricket.util.DecisionMadeByTeam;
 import com.example.gameofcricket.cricket.util.Toss;
 import com.example.gameofcricket.dao.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 @SpringBootApplication
-@RestController
 public class GameOfCricketApplication
 {
-    @Autowired
-    public static TeamStats teamStats;
-    @Autowired
+    public static TeamRepository teamRepository;
     public static PlayerRepository playerRepository;
-    @Autowired
     public static PlayerStatsRepository playerStatsRepository;
-    @Autowired
     public static UpdateScoreAfterEveryBallRepository updateScoreAfterEveryBallRepository;
-    @Autowired
     public static GameStatsRepository gameStatsRepository;
     public static void main(String[] args)
     {
@@ -33,7 +28,7 @@ public class GameOfCricketApplication
         playerRepository = context.getBean(PlayerRepository.class);
         playerStatsRepository=context.getBean(PlayerStatsRepository.class);
         updateScoreAfterEveryBallRepository=context.getBean(UpdateScoreAfterEveryBallRepository.class);
-        teamStats=context.getBean(TeamStats.class);
+        teamRepository =context.getBean(TeamRepository.class);
         gameStatsRepository=context.getBean(GameStatsRepository.class);
         Scanner sc= new Scanner(System.in);
         System.out.print("Enter number of Overs ");
@@ -91,16 +86,6 @@ public class GameOfCricketApplication
             MatchResults.getMatchResults(battingTeam, bowlingTeam, overs,countMatches);
             ScoreCard.getScorecard(battingTeam,bowlingTeam,countMatches);
             UpdatePlayerStats.updatePlayerStats(battingTeam,bowlingTeam);
-//            List<PlayerStats> playerStats=playerStatsRepository.getPlayerStatsByCenturyWhereHalfcentury();
-//            List<Player> p=GameOfCricketApplication.playerRepository.getHighestRunsInTeam();
-//            p.forEach(e->{
-//                System.out.println("siva");
-//                System.out.println(e);
-//            });
-            List<ScoreAtParticularOver> scoreAtThisOver=updateScoreAfterEveryBallRepository.getScoreAt(2,"CSK",(float) 5.2);
-            scoreAtThisOver.forEach(e->{
-                System.out.println(e);
-            });
             System.out.println("Enter 1 for Next Match Simulation");
             System.out.println("Enter 0 to exit Simulation");
             check=sc.nextInt();
@@ -108,12 +93,6 @@ public class GameOfCricketApplication
                 break;
             countMatches++;
         }
-        int matchId;
-        System.out.println("Enter Match Number to get details of that match ");
-        matchId=sc.nextInt();
-        List<Team> getDetails=teamStats.getMatchStatsByMatchId(matchId);
-        getDetails.forEach(e->{
-            System.out.println(e);
-        });
+
     }
 }

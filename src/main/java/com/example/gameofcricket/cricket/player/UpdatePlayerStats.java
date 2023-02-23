@@ -1,28 +1,26 @@
 package com.example.gameofcricket.cricket.player;
 import com.example.gameofcricket.GameOfCricketApplication;
 import com.example.gameofcricket.cricket.Team;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 public class UpdatePlayerStats {
-    public static List<PlayerStats> playerStats = new ArrayList<>();
     public static void updatePlayerStats(Team battingTeam, Team bowlingTeam) {
-        Optional<PlayerStats> optionalPlayerStatsBattingTeam = GameOfCricketApplication.playerStatsRepository.findById(battingTeam.getName());
-        Optional<PlayerStats> optionalPlayerStatsBowlingTeam = GameOfCricketApplication.playerStatsRepository.findById(battingTeam.getName());
+        List<PlayerStats> optionalPlayerStatsBattingTeam = GameOfCricketApplication.playerStatsRepository.getPlayerStatsByTeamName(battingTeam.getName());
+        List<PlayerStats> optionalPlayerStatsBowlingTeam = GameOfCricketApplication.playerStatsRepository.getPlayerStatsByTeamName(bowlingTeam.getName());
 
 
         if (optionalPlayerStatsBattingTeam.isEmpty()) {
             UpdatePlayerStats.updateForFirstMatch(battingTeam);
 
-        } else if(optionalPlayerStatsBattingTeam.isPresent()) {
+        } else if(!optionalPlayerStatsBattingTeam.isEmpty()) {
             UpdatePlayerStats.updateForMatches(battingTeam);
 
         }
-        else if(optionalPlayerStatsBowlingTeam.isEmpty())
+
+         if(optionalPlayerStatsBowlingTeam.isEmpty())
         {
             UpdatePlayerStats.updateForFirstMatch(bowlingTeam);
         }
-        else if(optionalPlayerStatsBowlingTeam.isPresent())
+        else if(!optionalPlayerStatsBowlingTeam.isEmpty())
         {
             updateForMatches(bowlingTeam);
         }
@@ -42,17 +40,15 @@ public class UpdatePlayerStats {
             }
             if(i.getNumberOfBallsPlayed()>0)
             newPlayer.setInnings(1);
-            playerStats.add(newPlayer);
             GameOfCricketApplication.playerStatsRepository.save(newPlayer);
         }
     }
     public static void updateForMatches(Team team) {
         int changeValue;
-        for (PlayerStats j : playerStats) {
-
+        List<PlayerStats> optionalPlayerStats = GameOfCricketApplication.playerStatsRepository.getPlayerStatsByTeamName(team.getName());
+        for (PlayerStats object : optionalPlayerStats) {
             for (Player i : team.players) {
-                Optional<PlayerStats> optionalPlayerStats = GameOfCricketApplication.playerStatsRepository.findById (j.getTeamName());
-                PlayerStats object = optionalPlayerStats.get();
+
                 if (i.getName().equals(object.getPlayerName())) {
                     changeValue = object.getRuns();
                     changeValue += i.getRuns();

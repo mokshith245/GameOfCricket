@@ -1,10 +1,12 @@
-package com.example.gameofcricket.cricket.Results;
+package com.example.gameofcricket.cricket.results;
 
 import com.example.gameofcricket.dao.GameStatsId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
+import org.springframework.stereotype.Service;
 
+@Service
 @Entity
 @IdClass(GameStatsId.class)
 public class GameStats
@@ -73,5 +75,18 @@ public class GameStats
 
     public void setOvers(float overs) {
         this.overs = overs;
+    }
+
+    @Override
+    public String toString() {
+        return "GameStats{" +
+                "teamName='" + teamName + '\'' +
+                ", score=" + score +
+                ", won='" + won + '\'' +
+                ", matchId=" + matchId +
+                ", overs=" + overs +
+                ", wickets=" + wickets +
+                ", extras=" + extras +
+                '}';
     }
 }
