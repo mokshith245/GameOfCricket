@@ -2,15 +2,13 @@ package com.example.gameofcricket.cricket;
 import com.example.gameofcricket.cricket.player.Player;
 import com.example.gameofcricket.cricket.player.PlayerRole;
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-
 public class Team
 {
     @Transient
-    public List<Player> players =new ArrayList<Player>();
+    public List<Player> players = new ArrayList<>();
     @Id
     private String name;
     private int numberOfMatchesPlayed;
@@ -37,9 +35,6 @@ public class Team
         this.numberOfMatchesPlayed = numberOfMatchesPlayed;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
     public String getName() {
         return name;
     }
@@ -77,8 +72,7 @@ public class Team
     {
         this.score = score;
     }
-    //    player cricketer=new player();
-    public List create_team()
+    public List<Player> create_team()
     {
         for(int i=1;i<=11;i++)
         {

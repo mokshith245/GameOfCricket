@@ -1,21 +1,22 @@
 package com.example.gameofcricket.controller;
-import com.example.gameofcricket.cricket.player.Player;
-import com.example.gameofcricket.service.PlayerService;
+
+import com.example.gameofcricket.cricket.Team;
+import com.example.gameofcricket.service.TeamStatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
+
 @RestController
-public class PlayerController
+public class TeamStatsController
 {
     @Autowired
-    private PlayerService playerService;
-    @RequestMapping("/playerStats/{id}")
-    public List<Player> getPlayerStats(@PathVariable int id)
+    private TeamStatsService teamStatsService;
+@RequestMapping("TeamStats/{name}")
+    public List<Team> getTeamStats(@PathVariable String name)
     {
-        return playerService.getPLayer(id);
+        return teamStatsService.getTeamStats(name);
     }
-
-
 }

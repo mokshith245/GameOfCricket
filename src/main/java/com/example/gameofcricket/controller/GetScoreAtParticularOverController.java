@@ -1,5 +1,4 @@
 package com.example.gameofcricket.controller;
-
 import com.example.gameofcricket.cricket.results.ScoreAtParticularOver;
 import com.example.gameofcricket.service.ScoreAtParticularTimeService;
 import org.springframework.beans.factory.annotation.Autowired;

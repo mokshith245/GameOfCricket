@@ -1,24 +1,30 @@
 package com.example.gameofcricket.cricket;
+
 import com.example.gameofcricket.GameOfCricketApplication;
 import com.example.gameofcricket.cricket.results.ScoreAtParticularOver;
 import com.example.gameofcricket.cricket.player.Player;
 import com.example.gameofcricket.cricket.player.PlayerRole;
 import com.example.gameofcricket.cricket.util.RandomGenerator;
 import org.springframework.stereotype.Component;
+
 import java.text.DecimalFormat;
 import java.util.Objects;
+
 import static java.lang.Math.*;
+
 @Component
 public class Play {
+
 
     Team battingTeam, bowlingTeam;
     int batsManOrder, score, totalWickets, runs, bowler, totalExtras;
     float total_overs, balls;
     Player striker, player1, player2, bowling;
     boolean noBall;
-    public void Bat(Team battingTeam, Team bowlingTeam, int target, int oversForMatch,int countMatches) {
+
+    public void Bat(Team battingTeam, Team bowlingTeam, int target, int oversForMatch, int countMatches) {
         //battingTeam.setMatchId(countMatches);
-        float checkOvers=0;
+        float checkOvers = 0;
         batsManOrder = 0;
         score = 0;
         total_overs = 0;
@@ -40,7 +46,7 @@ public class Play {
         RandomGenerator generateRuns = new RandomGenerator();
         while (battingTeam.players.size() - 1 > totalWickets) {
             while (total_overs < oversForMatch) {
-                ScoreAtParticularOver scoreAtParticularOver =new ScoreAtParticularOver();
+                ScoreAtParticularOver scoreAtParticularOver = new ScoreAtParticularOver();
                 scoreAtParticularOver.setMatchId(countMatches);
 
                 scoreAtParticularOver.setTeamName(battingTeam.getName());
@@ -49,33 +55,20 @@ public class Play {
                 else
                     runs = generateRuns.generateBowlerRuns();
                 switch (runs) {
-                    case 0:
-
-                        dot();
-                        break;
-                    case 1:
+                    case 0 -> dot();
+                    case 1 -> {
                         score += runs;
                         striker = Runs.Single(player1, player2, striker, bowling, runs);
-                        break;
-                    case 2:
+                    }
+                    case 2 -> {
                         score += runs;
                         striker = Runs.doubles(player1, player2, striker, bowling, runs);
-                        break;
-                    case 3:
-                        striker = Runs.triple(player1, player2, striker, bowling, runs);
-                        break;
-                    case 4:
-                        striker = Runs.four(player1, player2, striker, bowling, runs);
-                        break;
-                    case 5:
-                        wide();
-                        break;
-                    case 6:
-                        striker = Runs.six(player1, player2, striker, bowling, runs);
-                        break;
-                    case 7:
-                        wick();
-                        break;
+                    }
+                    case 3 -> striker = Runs.triple(player1, player2, striker, bowling, runs);
+                    case 4 -> striker = Runs.four(player1, player2, striker, bowling, runs);
+                    case 5 -> wide();
+                    case 6 -> striker = Runs.six(player1, player2, striker, bowling, runs);
+                    case 7 -> wick();
                 }
                 if (runs == 5) {
                     scoreAtParticularOver.setOvers(checkOvers);
@@ -111,23 +104,22 @@ public class Play {
                 }
                 balls = (float) (0.1) + bowling.getNumberOfOversBowled();
                 DecimalFormat df = new DecimalFormat("#.##");
-                balls = Float.valueOf(df.format(balls));
+                balls = Float.parseFloat(df.format(balls));
                 bowling.setNumberOfOversBowled(balls);
                 if (ballsBowled != 6) {
-                    checkOvers = (float) (0.1) +checkOvers;
+                    checkOvers = (float) (0.1) + checkOvers;
                     DecimalFormat format = new DecimalFormat("#.##");
-                    checkOvers=Float.valueOf(format.format(checkOvers));
+                    checkOvers = Float.parseFloat(format.format(checkOvers));
                     scoreAtParticularOver.setOvers(checkOvers);
                     scoreAtParticularOver.setScore(score);
                     ballsBowled++;
-                }
-                else {
-                    checkOvers = (float) (0.1) +checkOvers;
+                } else {
+                    checkOvers = (float) (0.1) + checkOvers;
                     DecimalFormat format = new DecimalFormat("#.##");
-                    checkOvers=Float.valueOf(format.format(checkOvers));
+                    checkOvers = Float.parseFloat(format.format(checkOvers));
                     scoreAtParticularOver.setOvers(checkOvers);
                     scoreAtParticularOver.setScore(score);
-                    checkOvers=(float)ceil(checkOvers);
+                    checkOvers = (float) ceil(checkOvers);
                     ballsBowled = 1;
                 }
                 scoreAtParticularOver.setWickets(totalWickets);
@@ -148,13 +140,14 @@ public class Play {
         }
 
 
-
     }
+
     public void dot() {
         int x = striker.getNumberOfBallsPlayed();
         x++;
         striker.setNumberOfBallsPlayed(x);
     }
+
     public void wick() {
 
         if (Objects.equals(striker.getName(), player1.getName()) && !noBall) {
@@ -191,6 +184,7 @@ public class Play {
         if (noBall)
             noBall = false;
     }
+
     public void wide() {
 
         if (Objects.equals(striker.getName(), player1.getName())) {

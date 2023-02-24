@@ -1,37 +1,22 @@
 package com.example.gameofcricket.cricket.player;
 
-import com.example.gameofcricket.dao.PlayerId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
+import com.example.gameofcricket.dao.compositeKeys.PlayerId;
+import jakarta.persistence.*;
 
 @Entity
-@IdClass(PlayerId.class)
+
 public class Player
 {
     @Id
-    private int matchId;
-    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int playerId;
     private String name;
-    @Id
     private String teamName;
-    private int runs;
-    private int numberOfBallsPlayed;
-    private int wickets;
+    private int runs,numberOfBallsPlayed,wickets,innings,highestScore;
     private float numberOfOversBowled;
-    private  int extras;
-
-    private int numberOfRunsGiven;
+    private  int extras,numberOfRunsGiven,halfCentury, century;
 
     private PlayerRole playerRole;
-
-    public int getMatchId() {
-        return matchId;
-    }
-
-    public void setMatchId(int matchId) {
-        this.matchId = matchId;
-    }
 
 
     public String getTeamName() {
@@ -122,16 +107,64 @@ public class Player
         this.wickets = wickets;
     }
 
+    public int getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
+    }
+
+    public int getInnings() {
+        return innings;
+    }
+
+    public void setInnings(int innings) {
+        this.innings = innings;
+    }
+
+    public int getHighestScore() {
+        return highestScore;
+    }
+
+    public void setHighestScore(int highestScore) {
+        this.highestScore = highestScore;
+    }
+
+    public int getHalfCentury() {
+        return halfCentury;
+    }
+
+    public void setHalfCentury(int halfCentury) {
+        this.halfCentury = halfCentury;
+    }
+
+    public int getCentury() {
+        return century;
+    }
+
+    public void setCentury(int century) {
+        this.century = century;
+    }
+
+
+
     @Override
     public String toString() {
         return "Player{" +
-                "name='" + name + '\'' +
+                "playerId=" + playerId +
+                ", name='" + name + '\'' +
+                ", teamName='" + teamName + '\'' +
                 ", runs=" + runs +
                 ", numberOfBallsPlayed=" + numberOfBallsPlayed +
                 ", wickets=" + wickets +
                 ", numberOfOversBowled=" + numberOfOversBowled +
+                ", innings=" + innings +
+                ", highestScore=" + highestScore +
                 ", extras=" + extras +
                 ", numberOfRunsGiven=" + numberOfRunsGiven +
+                ", halfCentury=" + halfCentury +
+                ", century=" + century +
                 ", playerRole=" + playerRole +
                 '}';
     }

@@ -6,31 +6,31 @@ import com.example.gameofcricket.cricket.results.MatchResults;
 import com.example.gameofcricket.cricket.results.ScoreCard;
 import com.example.gameofcricket.cricket.util.DecisionMadeByTeam;
 import com.example.gameofcricket.cricket.util.Toss;
-import com.example.gameofcricket.dao.*;
+import com.example.gameofcricket.dao.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 @SpringBootApplication
 public class GameOfCricketApplication
 {
+    public static PlayerStatsPerMatchRepository playerStatsPerMatchRepository;
     public static TeamRepository teamRepository;
     public static PlayerRepository playerRepository;
-    public static PlayerStatsRepository playerStatsRepository;
     public static UpdateScoreAfterEveryBallRepository updateScoreAfterEveryBallRepository;
     public static GameStatsRepository gameStatsRepository;
     public static void main(String[] args)
     {
         ConfigurableApplicationContext context= SpringApplication.run(GameOfCricketApplication.class, args);
         playerRepository = context.getBean(PlayerRepository.class);
-        playerStatsRepository=context.getBean(PlayerStatsRepository.class);
         updateScoreAfterEveryBallRepository=context.getBean(UpdateScoreAfterEveryBallRepository.class);
         teamRepository =context.getBean(TeamRepository.class);
         gameStatsRepository=context.getBean(GameStatsRepository.class);
-        Scanner sc= new Scanner(System.in);
+        playerStatsPerMatchRepository=context.getBean((PlayerStatsPerMatchRepository.class));
+
+        
+         Scanner sc= new Scanner(System.in);
         System.out.print("Enter number of Overs ");
         int overs= sc.nextInt();
         int check=1,countMatches=1;
@@ -72,7 +72,9 @@ public class GameOfCricketApplication
             Team wonToss = Toss.tossTheCoin(team1Obj, team2Obj);
             String chooseBatOrBall = DecisionMadeByTeam.getDecisionMadeByTeam();
             Team battingTeam,bowlingTeam;
-            if((wonToss==team1Obj&&chooseBatOrBall=="Bat") || (wonToss==team2Obj&&chooseBatOrBall=="Bowl" ))
+            boolean condition1 = wonToss==team1Obj&& Objects.equals(chooseBatOrBall, "Bat");
+            boolean condition2 = wonToss==team2Obj&& Objects.equals(chooseBatOrBall, "Bowl");
+            if((condition1 || condition2))
             {
                 battingTeam=team1Obj;
                 bowlingTeam=team2Obj;
@@ -84,8 +86,10 @@ public class GameOfCricketApplication
             }
             Simulation.startSimulation(battingTeam, bowlingTeam, overs,countMatches);
             MatchResults.getMatchResults(battingTeam, bowlingTeam, overs,countMatches);
-            ScoreCard.getScorecard(battingTeam,bowlingTeam,countMatches);
-            UpdatePlayerStats.updatePlayerStats(battingTeam,bowlingTeam);
+            ScoreCard scoreCard=new ScoreCard();
+            scoreCard.getScorecard(battingTeam,bowlingTeam,countMatches);
+            UpdatePlayerStats.update(battingTeam);
+            UpdatePlayerStats.update(bowlingTeam);
             System.out.println("Enter 1 for Next Match Simulation");
             System.out.println("Enter 0 to exit Simulation");
             check=sc.nextInt();

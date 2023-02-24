@@ -1,4 +1,4 @@
-package com.example.gameofcricket.dao;
+package com.example.gameofcricket.dao.repositories;
 import com.example.gameofcricket.cricket.Team;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -12,5 +12,5 @@ public interface TeamRepository extends CrudRepository<Team,String>
             value = "select * from team where name=:i",
             nativeQuery = true
     )
-    public List<Team> getTeamStatsByTeamName(@Param("i")String i);
+    List<Team> getTeamStatsByTeamName(@Param("i")String i);
 }

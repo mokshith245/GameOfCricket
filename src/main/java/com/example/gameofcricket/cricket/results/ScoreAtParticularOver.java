@@ -1,6 +1,6 @@
 package com.example.gameofcricket.cricket.results;
 
-import com.example.gameofcricket.dao.OversId;
+import com.example.gameofcricket.dao.compositeKeys.OversId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;

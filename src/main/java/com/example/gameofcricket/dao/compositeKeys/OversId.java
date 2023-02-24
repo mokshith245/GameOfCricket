@@ -1,4 +1,4 @@
-package com.example.gameofcricket.dao;
+package com.example.gameofcricket.dao.compositeKeys;
 import jakarta.persistence.Id;
 import lombok.EqualsAndHashCode;
 import java.io.Serializable;

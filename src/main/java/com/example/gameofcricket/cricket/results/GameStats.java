@@ -1,9 +1,7 @@
 package com.example.gameofcricket.cricket.results;
 
-import com.example.gameofcricket.dao.GameStatsId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
+import com.example.gameofcricket.dao.compositeKeys.GameStatsId;
+import jakarta.persistence.*;
 import org.springframework.stereotype.Service;
 
 @Service
