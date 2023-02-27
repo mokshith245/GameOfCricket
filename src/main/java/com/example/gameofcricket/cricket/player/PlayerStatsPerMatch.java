@@ -16,6 +16,7 @@ public class PlayerStatsPerMatch
     @JoinColumn(name = "playerId",insertable = false,updatable = false)
     private Player player;
 
+    private int matchNumber;
     private String name;
 
     private String teamName;
@@ -28,6 +29,14 @@ public class PlayerStatsPerMatch
     private int numberOfRunsGiven;
 
     private PlayerRole playerRole;
+
+    public int getMatchNumber() {
+        return matchNumber;
+    }
+
+    public void setMatchNumber(int matchNumber) {
+        this.matchNumber = matchNumber;
+    }
 
     public int getMatchId() {
         return matchId;

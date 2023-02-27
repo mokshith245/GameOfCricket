@@ -18,17 +18,13 @@ public class PlayerStatsPerMatchController
     {
         return playerStatsPerMatchPerMatchService.getHighestScoreByMatchIdAndTeamName(id,teamName);
     }
-    @RequestMapping("/fiftyScore/{id}")
-    public List<PlayerStatsPerMatch> getNameOfFiftyScoredPlayer(@PathVariable int id)
+    @RequestMapping("/runsScoredPlayer/{id}/{runs}")
+    public List<PlayerStatsPerMatch> getNameOfRunsScoredPlayer(@PathVariable int id,@PathVariable int runs)
     {
-        return playerStatsPerMatchPerMatchService.getFiftyScoredPlayer(id);
+        return playerStatsPerMatchPerMatchService.getRunsScoredPlayer(id,runs);
     }
 
-    @RequestMapping("/hundredScore/{id}")
-    public List<PlayerStatsPerMatch> getNameOfHundredScoredPlayer(@PathVariable int id)
-    {
-        return playerStatsPerMatchPerMatchService.getHundredScoredPlayer(id);
-    }
+
     @RequestMapping("/scoreCard/{id}")
     public List<PlayerStatsPerMatch> getScoreCardOFMatch(@PathVariable int id)
     {

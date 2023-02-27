@@ -17,16 +17,10 @@ public interface PlayerStatsPerMatchRepository extends CrudRepository<PlayerStat
     )
     List<PlayerStatsPerMatch> getHighestRunsInTeam(@Param("teamName") String teamName,@Param("id") int id);
     @Query(
-            value = "select * from player_stats_per_match WHERE  match_id=:id AND runs > 49",
+            value = "select * from player_stats_per_match WHERE  match_id=:id AND runs > :runs",
             nativeQuery = true
     )
-    List<PlayerStatsPerMatch> getPlayerFiftyScoreInMatchByMatchId(@Param("id") int id);
-
-    @Query(
-            value = "select * from player_stats_per_match WHERE  match_id=:id AND runs > 99",
-            nativeQuery = true
-    )
-    List<PlayerStatsPerMatch> getPlayerHundredScoreInMatchByMatchId(@Param("id") int id);
+    List<PlayerStatsPerMatch> getPlayerRunsScoreInMatchByMatchId(@Param("id") int id,@Param("runs") int runs);
 
     @Query(
             value = "select * from player_stats_per_match WHERE  match_id=:id",
@@ -34,5 +28,9 @@ public interface PlayerStatsPerMatchRepository extends CrudRepository<PlayerStat
     )
     List<PlayerStatsPerMatch> getScoreCardOfMatchByMatchId(@Param("id")int id);
 
-
+    @Query(
+            value = "select * from player_stats_per_match WHERE  match_number=:id AND team_name=:name",
+            nativeQuery = true
+    )
+    List<PlayerStatsPerMatch> getTeam(@Param("name") String name,@Param("id")int id);
 }

@@ -15,5 +15,12 @@ public interface PlayerRepository extends CrudRepository<Player, Integer>
     )
     List<Player> getPlayer(@Param("id") int id);
 
+    @Query(
+            value = "select * from player WHERE team_name=:name",
+            nativeQuery = true
+    )
+
+    List<Player> getTeam(@Param("name") String name);
+
 
 }

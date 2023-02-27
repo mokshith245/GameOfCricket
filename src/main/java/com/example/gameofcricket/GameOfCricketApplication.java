@@ -1,5 +1,6 @@
 package com.example.gameofcricket;
 import com.example.gameofcricket.cricket.Simulation;
+import com.example.gameofcricket.cricket.StartGame;
 import com.example.gameofcricket.cricket.Team;
 import com.example.gameofcricket.cricket.player.UpdatePlayerStats;
 import com.example.gameofcricket.cricket.results.MatchResults;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.event.EventListener;
+
 import java.util.*;
 @SpringBootApplication
 public class GameOfCricketApplication
@@ -28,75 +31,5 @@ public class GameOfCricketApplication
         teamRepository =context.getBean(TeamRepository.class);
         gameStatsRepository=context.getBean(GameStatsRepository.class);
         playerStatsPerMatchRepository=context.getBean((PlayerStatsPerMatchRepository.class));
-
-        
-         Scanner sc= new Scanner(System.in);
-        System.out.print("Enter number of Overs ");
-        int overs= sc.nextInt();
-        int check=1,countMatches=1;
-        List<Team> teams=new ArrayList<>();
-        Team india = new Team("India");
-        india.players = india.create_team();
-        Team pakistan = new Team("Pakistan");
-        pakistan.players = pakistan.create_team();
-        Team newZealand = new Team("New Zealand");
-        newZealand.players = newZealand.create_team();
-        Team australia = new Team("Australia");
-        australia.players = australia.create_team();
-        Team southAfrica = new Team("South Africa");
-        southAfrica.players = southAfrica.create_team();
-        Team england = new Team("England");
-        england.players = england.create_team();
-        Team afganistan = new Team("Afganistan");
-        afganistan.players = afganistan.create_team();
-        Team bangladesh = new Team("Bangladesh");
-        bangladesh.players = bangladesh.create_team();
-        Team westIndies = new Team("West Indies");
-        westIndies.players = westIndies.create_team();
-        teams.add(india);
-        teams.add(pakistan);
-        teams.add(newZealand);
-        teams.add(southAfrica);
-        teams.add(afganistan);
-        teams.add(australia);
-        teams.add(bangladesh);
-        teams.add(england);
-        teams.add(westIndies);
-        while(check>0)
-        {
-            System.out.println("Match "+countMatches);
-            List<Team> twoTeams=new ArrayList<>(teams);
-            Collections.shuffle(twoTeams);
-            Team team1Obj = twoTeams.get(0);
-            Team team2Obj = twoTeams.get(1);
-            Team wonToss = Toss.tossTheCoin(team1Obj, team2Obj);
-            String chooseBatOrBall = DecisionMadeByTeam.getDecisionMadeByTeam();
-            Team battingTeam,bowlingTeam;
-            boolean condition1 = wonToss==team1Obj&& Objects.equals(chooseBatOrBall, "Bat");
-            boolean condition2 = wonToss==team2Obj&& Objects.equals(chooseBatOrBall, "Bowl");
-            if((condition1 || condition2))
-            {
-                battingTeam=team1Obj;
-                bowlingTeam=team2Obj;
-            }
-            else
-            {
-                battingTeam=team2Obj;
-                bowlingTeam=team1Obj;
-            }
-            Simulation.startSimulation(battingTeam, bowlingTeam, overs,countMatches);
-            MatchResults.getMatchResults(battingTeam, bowlingTeam, overs,countMatches);
-            ScoreCard scoreCard=new ScoreCard();
-            scoreCard.getScorecard(battingTeam,bowlingTeam,countMatches);
-            UpdatePlayerStats.update(battingTeam);
-            UpdatePlayerStats.update(bowlingTeam);
-            System.out.println("Enter 1 for Next Match Simulation");
-            System.out.println("Enter 0 to exit Simulation");
-            check=sc.nextInt();
-            if(check==0)
-                break;
-            countMatches++;
-        }
-
     }
 }

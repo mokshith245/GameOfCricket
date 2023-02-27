@@ -43,6 +43,8 @@ public class Play {
         batsManOrder++;
         player2 = battingTeam.players.get(batsManOrder);
         bowling = bowlingTeam.players.get(bowler);
+        player1.setInnings(player1.getInnings()+1);
+        player2.setInnings(player2.getInnings()+1);
         RandomGenerator generateRuns = new RandomGenerator();
         while (battingTeam.players.size() - 1 > totalWickets) {
             while (total_overs < oversForMatch) {
@@ -162,6 +164,7 @@ public class Play {
                 return;
             player1 = battingTeam.players.get(batsManOrder);
             striker = battingTeam.players.get(batsManOrder);
+            player1.setInnings(player1.getInnings()+1);
             int bowlerWicket = bowling.getWickets();
             bowlerWicket++;
             bowling.setWickets(bowlerWicket);
@@ -177,6 +180,7 @@ public class Play {
                 return;
             player2 = battingTeam.players.get(batsManOrder);
             striker = battingTeam.players.get(batsManOrder);
+            player2.setInnings(player2.getInnings()+1);
             int bowlerWicket = bowling.getWickets();
             bowlerWicket++;
             bowling.setWickets(bowlerWicket);

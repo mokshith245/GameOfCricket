@@ -15,7 +15,7 @@ public class TeamStatsController
     @Autowired
     private TeamStatsService teamStatsService;
 @RequestMapping("TeamStats/{name}")
-    public List<Team> getTeamStats(@PathVariable String name)
+    public Team getTeamStats(@PathVariable String name)
     {
         return teamStatsService.getTeamStats(name);
     }

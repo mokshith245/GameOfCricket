@@ -9,8 +9,9 @@ import java.util.List;
 public interface TeamRepository extends CrudRepository<Team,String>
 {
     @Query(
-            value = "select * from team where name=:i",
+            value = "select * from team where name=:name",
             nativeQuery = true
     )
-    List<Team> getTeamStatsByTeamName(@Param("i")String i);
+    Team getTeamStatsByTeamName(@Param("name")String name);
+
 }

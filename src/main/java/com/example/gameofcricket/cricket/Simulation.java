@@ -1,11 +1,14 @@
 package com.example.gameofcricket.cricket;
 
 import com.example.gameofcricket.GameOfCricketApplication;
+import com.example.gameofcricket.cricket.player.Player;
 
 public class Simulation
 {
     public static void startSimulation(Team battingTeam, Team bowlingTeam, int overs,int countMatches)
     {
+        GameOfCricketApplication.playerRepository.saveAll(battingTeam.players);
+        GameOfCricketApplication.playerRepository.saveAll(bowlingTeam.players);
         int numberOfMatches= battingTeam.getNumberOfMatchesPlayed();
         numberOfMatches++;
         battingTeam.setNumberOfMatchesPlayed(numberOfMatches);

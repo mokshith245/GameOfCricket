@@ -17,17 +17,12 @@ public class PlayerStatsPerMatchPerMatchService
         List<PlayerStatsPerMatch> getHighestScore=playerStatsPerMatchRepository.getHighestRunsInTeam(teamName,id);
         return getHighestScore;
     }
-    public List<PlayerStatsPerMatch> getFiftyScoredPlayer(int id)
+    public List<PlayerStatsPerMatch> getRunsScoredPlayer(int id,int runs)
     {
-        List<PlayerStatsPerMatch> getFiftyScorePlayer=playerStatsPerMatchRepository.getPlayerFiftyScoreInMatchByMatchId(id);
-        return getFiftyScorePlayer;
+        List<PlayerStatsPerMatch> getRunsScorePlayer=playerStatsPerMatchRepository.getPlayerRunsScoreInMatchByMatchId(id,runs);
+        return getRunsScorePlayer;
     }
 
-    public List<PlayerStatsPerMatch> getHundredScoredPlayer(int id)
-    {
-        List<PlayerStatsPerMatch> getHundredScorePlayer=playerStatsPerMatchRepository.getPlayerHundredScoreInMatchByMatchId(id);
-        return getHundredScorePlayer;
-    }
 
     public List<PlayerStatsPerMatch> getMatchScoreCard(int id)
     {
