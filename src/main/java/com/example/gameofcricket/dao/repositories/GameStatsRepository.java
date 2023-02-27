@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface GameStatsRepository extends CrudRepository<GameStats, GameStatsId>
@@ -18,5 +19,11 @@ public interface GameStatsRepository extends CrudRepository<GameStats, GameStats
             nativeQuery = true
     )
     List<GameStats> getMatchStatsByMatchId(@Param("i")int i);
+
+    @Query(
+            value = " select MAX(match_id) from game_stats",
+            nativeQuery = true
+    )
+    Optional<Integer> getMaxId();
 
 }

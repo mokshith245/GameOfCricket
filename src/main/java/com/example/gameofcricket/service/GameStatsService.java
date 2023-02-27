@@ -14,4 +14,5 @@ public class GameStatsService
         List<GameStats> getGameStats= gameStatsRepository.getMatchStatsByMatchId(id);
         return getGameStats;
     }
+
 }

@@ -4,6 +4,7 @@ import com.example.gameofcricket.GameOfCricketApplication;
 import com.example.gameofcricket.cricket.StartGame;
 import com.example.gameofcricket.cricket.Team;
 import com.example.gameofcricket.dao.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Service;
@@ -12,11 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 @Service
 public class GameService {
-    private int matchCount = 1;
-
+    private  int matchCount ;
     private static List<Team> teams;
 
     static{
+
         teams=new ArrayList<>();
         Team india = new Team("India");
         india.players = india.create_team();
@@ -30,8 +31,8 @@ public class GameService {
         southAfrica.players = southAfrica.create_team();
         Team england = new Team("England");
         england.players = england.create_team();
-        Team afganistan = new Team("Afganistan");
-        afganistan.players = afganistan.create_team();
+        Team afghanistan = new Team("Afghanistan");
+        afghanistan.players = afghanistan.create_team();
         Team bangladesh = new Team("Bangladesh");
         bangladesh.players = bangladesh.create_team();
         Team westIndies = new Team("West Indies");
@@ -40,7 +41,7 @@ public class GameService {
         teams.add(pakistan);
         teams.add(newZealand);
         teams.add(southAfrica);
-        teams.add(afganistan);
+        teams.add(afghanistan);
         teams.add(australia);
         teams.add(bangladesh);
         teams.add(england);
@@ -48,9 +49,15 @@ public class GameService {
     }
 
     public void createGame(int overs){
+        if(GameOfCricketApplication.gameStatsRepository.getMaxId().isEmpty())
+            matchCount=1;
+        else {
+            matchCount=GameOfCricketApplication.gameStatsRepository.getMaxId().get();
+            matchCount++;
+        }
         StartGame startGame=new StartGame();
         startGame.startGame(teams,overs,matchCount);
-        matchCount++;
+
 
     }
 }
