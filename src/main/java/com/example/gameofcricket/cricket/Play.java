@@ -23,7 +23,6 @@ public class Play {
     boolean noBall;
 
     public void Bat(Team battingTeam, Team bowlingTeam, int target, int oversForMatch, int countMatches) {
-        //battingTeam.setMatchId(countMatches);
         float checkOvers = 0;
         batsManOrder = 0;
         score = 0;
@@ -56,22 +55,30 @@ public class Play {
                     runs = generateRuns.generateBatsmanRuns();
                 else
                     runs = generateRuns.generateBowlerRuns();
-                switch (runs) {
-                    case 0 -> dot();
-                    case 1 -> {
+                    if(runs==0)  dot();
+                    if(runs==1||runs==3)
+                    {
                         score += runs;
-                        striker = Runs.Single(player1, player2, striker, bowling, runs);
+                        if(striker==player1)
+                        striker = Runs.updateMatchStats(player1, player2, striker, bowling, runs);
+                        else
+                        {
+                            striker = Runs.updateMatchStats( player2,player1, striker, bowling, runs);
+                        }
                     }
-                    case 2 -> {
+                    if(runs==2||runs==4||runs==6)
+                    {
                         score += runs;
-                        striker = Runs.doubles(player1, player2, striker, bowling, runs);
+                        if(striker==player1)
+                            striker = Runs.updateMatchStats(player1, player1, striker, bowling, runs);
+                        else
+                        {
+                            striker = Runs.updateMatchStats( player2,player2, striker, bowling, runs);
+                        }
                     }
-                    case 3 -> striker = Runs.triple(player1, player2, striker, bowling, runs);
-                    case 4 -> striker = Runs.four(player1, player2, striker, bowling, runs);
-                    case 5 -> wide();
-                    case 6 -> striker = Runs.six(player1, player2, striker, bowling, runs);
-                    case 7 -> wick();
-                }
+                    if(runs==5)  wide();
+                    if(runs==7) wick();
+
                 if (runs == 5) {
                     scoreAtParticularOver.setOvers(checkOvers);
                     scoreAtParticularOver.setScore(score);

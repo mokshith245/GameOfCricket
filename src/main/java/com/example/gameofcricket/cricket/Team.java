@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class Team
 {
-    @Transient
+    @OneToMany(mappedBy = "teamName")
     public List<Player> players = new ArrayList<>();
     @Id
     private String name;
@@ -79,6 +79,7 @@ public class Team
             Player cricketer = new Player();
 
             cricketer.setName(String.format("Player%d", i));
+            cricketer.setTeamName(getName());
             if(i<=6)
             cricketer.setPlayerRole(PlayerRole.Batsman);
             else
