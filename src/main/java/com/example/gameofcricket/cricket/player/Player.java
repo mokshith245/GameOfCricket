@@ -1,5 +1,6 @@
 package com.example.gameofcricket.cricket.player;
 
+import com.example.gameofcricket.cricket.Team;
 import com.example.gameofcricket.dao.compositeKeys.PlayerId;
 import jakarta.persistence.*;
 
@@ -11,7 +12,12 @@ public class Player
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int playerId;
     private String name;
+
+    @Column(name = "teamName")
     private String teamName;
+    @ManyToOne(targetEntity = Team.class)
+    @JoinColumn(name = "teamName",updatable = false,insertable = false)
+    private Team team;
     private int runs,numberOfBallsPlayed,wickets,innings,highestScore;
     private float numberOfOversBowled;
     private  int extras,numberOfRunsGiven,halfCentury, century;

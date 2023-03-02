@@ -7,69 +7,45 @@ public class MatchResults
 {
     public static void getMatchResults(Team battingTeam, Team bowlingTeam, int overs,int matchId)
     {
-
+        GameStats gameStatsBatting=new GameStats();
+        GameStats gameStatsBowling=new GameStats();
         if (battingTeam.getScore() < bowlingTeam.getScore()) {
-            GameStats gameStatsBatting=new GameStats();
-            gameStatsBatting.setTeamName(battingTeam.getName());
-            gameStatsBatting.setScore(battingTeam.getScore());
-            gameStatsBatting.setOvers(battingTeam.getOvers());
-            gameStatsBatting.setMatchId(matchId);
-            gameStatsBatting.setExtras(battingTeam.getExtras());
-            gameStatsBatting.setWickets(battingTeam.getWickets());
+            gameStatsBatting=MatchResults.team(gameStatsBatting,battingTeam,matchId);
             int wonByWickets = 10 - bowlingTeam.getWickets();
             gameStatsBatting.setWon(bowlingTeam.getName()+"  Won by  " + wonByWickets + " wickets.");
-            GameStats gameStatsBowling=new GameStats();
-            gameStatsBowling.setExtras(bowlingTeam.getExtras());
-            gameStatsBowling.setTeamName(bowlingTeam.getName());
-            gameStatsBowling.setScore(bowlingTeam.getScore());
-            gameStatsBowling.setMatchId(matchId);
-            gameStatsBowling.setOvers(battingTeam.getOvers());
-            gameStatsBowling.setWickets(bowlingTeam.getWickets());
+            gameStatsBowling=MatchResults.team(gameStatsBowling,bowlingTeam,matchId);
             gameStatsBowling.setWon(bowlingTeam.getName()+"  Won by  " + wonByWickets + " wickets.");
             GameOfCricketApplication.gameStatsRepository.save(gameStatsBowling);
             GameOfCricketApplication.gameStatsRepository.save(gameStatsBatting);
-        } else {
-            if(battingTeam.getScore()-bowlingTeam.getScore()==0) {
-                GameStats gameStatsBatting=new GameStats();
-                gameStatsBatting.setExtras(battingTeam.getExtras());
-                gameStatsBatting.setTeamName(battingTeam.getName());
-                gameStatsBatting.setScore(battingTeam.getScore());
-                gameStatsBatting.setOvers(battingTeam.getOvers());
-                gameStatsBatting.setMatchId(matchId);
-                gameStatsBatting.setWickets(battingTeam.getWickets());
+        }
+        else if (battingTeam.getScore()-bowlingTeam.getScore()==0) {
+
+                gameStatsBatting=MatchResults.team(gameStatsBatting,battingTeam,matchId);
                 gameStatsBatting.setWon("Match Drawn");
-                GameStats gameStatsBowling=new GameStats();
-                gameStatsBowling.setExtras(bowlingTeam.getExtras());
-                gameStatsBowling.setTeamName(bowlingTeam.getName());
-                gameStatsBowling.setScore(bowlingTeam.getScore());
-                gameStatsBowling.setMatchId(matchId);
-                gameStatsBowling.setOvers(battingTeam.getOvers());
-                gameStatsBowling.setWickets(bowlingTeam.getWickets());
+                gameStatsBowling=MatchResults.team(gameStatsBowling,bowlingTeam,matchId);
                 gameStatsBowling.setWon("Match Drawn");
                 GameOfCricketApplication.gameStatsRepository.save(gameStatsBowling);
                 GameOfCricketApplication.gameStatsRepository.save(gameStatsBatting);
             }
             else {
-                GameStats gameStatsBatting=new GameStats();
-                gameStatsBatting.setTeamName(battingTeam.getName());
-                gameStatsBatting.setScore(battingTeam.getScore());
-                gameStatsBatting.setOvers(battingTeam.getOvers());
-                gameStatsBatting.setMatchId(matchId);
-                gameStatsBatting.setWickets(battingTeam.getWickets());
-                gameStatsBatting.setExtras(battingTeam.getExtras());
+                gameStatsBatting=MatchResults.team(gameStatsBatting,battingTeam,matchId);
                 gameStatsBatting.setWon(battingTeam.getName() + " Won by " + (battingTeam.getScore() - bowlingTeam.getScore()) + " runs.");
-                GameStats gameStatsBowling=new GameStats();
-                gameStatsBowling.setExtras(bowlingTeam.getExtras());
-                gameStatsBowling.setTeamName(bowlingTeam.getName());
-                gameStatsBowling.setScore(bowlingTeam.getScore());
-                gameStatsBowling.setMatchId(matchId);
-                gameStatsBowling.setOvers(battingTeam.getOvers());
-                gameStatsBowling.setWickets(bowlingTeam.getWickets());
+                gameStatsBowling=MatchResults.team(gameStatsBowling,bowlingTeam,matchId);
                 gameStatsBowling.setWon(battingTeam.getName() + " Won by " + (battingTeam.getScore() - bowlingTeam.getScore()) + " runs.");
                 GameOfCricketApplication.gameStatsRepository.save(gameStatsBowling);
                 GameOfCricketApplication.gameStatsRepository.save(gameStatsBatting);
             }
-
-        }
     }
+    public static GameStats team(GameStats gameStats,Team team,int matchId)
+    {
+        gameStats.setTeamName(team.getName());
+        gameStats.setScore(team.getScore());
+        gameStats.setOvers(team.getOvers());
+        gameStats.setMatchId(matchId);
+        gameStats.setWickets(team.getWickets());
+        gameStats.setExtras(team.getExtras());
+        return gameStats;
+    }
+
+
 }

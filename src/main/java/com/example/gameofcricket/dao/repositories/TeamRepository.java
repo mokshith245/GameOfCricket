@@ -13,5 +13,10 @@ public interface TeamRepository extends CrudRepository<Team,String>
             nativeQuery = true
     )
     Team getTeamStatsByTeamName(@Param("name")String name);
+    @Query(
+            value = "select * from team",
+            nativeQuery = true
+    )
+    List<Team> getTeams();
 
 }

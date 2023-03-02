@@ -16,8 +16,8 @@ public class TeamStatsService
 
     public Team getTeamStats(String name)
     {
-        Team getTeam=teamRepository.getTeamStatsByTeamName(name);
-        return getTeam;
+        Team team=teamRepository.getTeamStatsByTeamName(name);
+        return team;
     }
 
 

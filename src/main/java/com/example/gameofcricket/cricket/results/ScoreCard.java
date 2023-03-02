@@ -17,14 +17,12 @@ public class ScoreCard {
         for (Player i : battingTeam.players) {
 
             i.setTeamName(battingTeam.getName());
-            //System.out.println(i.getName()+" "+i.getRuns()+" "+i.getNumberOfBallsPlayed()+" "+i.getTeamName());
         }
         scorecard(battingTeam,matchId);
         System.out.println(bowlingTeam.getName());
 
         for (Player i : bowlingTeam.players) {
             i.setTeamName(bowlingTeam.getName());
-            //System.out.println(i.getName()+" "+i.getRuns()+" "+i.getNumberOfBallsPlayed()+" "+i.getTeamName());
         }
         scorecard(bowlingTeam,matchId);
     }
@@ -35,9 +33,7 @@ public class ScoreCard {
         if(teamMatches.getNumberOfMatchesPlayed()>1) {
             System.out.println(teamMatches.getNumberOfMatchesPlayed());
             List<PlayerStatsPerMatch>teamPlayers=GameOfCricketApplication.playerStatsPerMatchRepository.getTeam(team.getName(),teamMatches.getNumberOfMatchesPlayed()-1);
-
             for (Player i : team.players) {
-               // System.out.println(i.getName()+" "+i.getRuns()+" "+i.getNumberOfBallsPlayed()+" "+i.getTeamName());
                 for (PlayerStatsPerMatch j :teamPlayers) {
                     PlayerStatsPerMatch playerStatsPerMatch = new PlayerStatsPerMatch();
                     if (j.getPlayerId() == i.getPlayerId()) {

@@ -7,6 +7,7 @@ public class Simulation
 {
     public static void startSimulation(Team battingTeam, Team bowlingTeam, int overs,int countMatches)
     {
+       // System.out.println(battingTeam.players.get(0).getTeamName());
         GameOfCricketApplication.playerRepository.saveAll(battingTeam.players);
         GameOfCricketApplication.playerRepository.saveAll(bowlingTeam.players);
         int numberOfMatches= battingTeam.getNumberOfMatchesPlayed();

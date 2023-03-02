@@ -17,17 +17,6 @@ public class UpdatePlayerStats {
             for (Player i : team.players) {
                 for (PlayerStatsPerMatch j : teamPlayers) {
                     if (j.getPlayerId() == i.getPlayerId()) {
-//                        changeValue = i.getRuns();
-//                        changeValue = j.getRuns();
-//                        i.setRuns(changeValue);
-//                        changeValue = i.getWickets();
-//                        changeValue += j.getWickets();
-//                        i.setWickets(changeValue);
-//                        if (j.getNumberOfBallsPlayed() > 0) {
-//                            changeValue = i.getInnings();
-//                            changeValue++;
-//                            i.setInnings(changeValue);
-//                        }
                         if (i.getRuns() - j.getRuns() >= 50 && i.getRuns() - j.getRuns() < 100) {
                             changeValue = i.getHalfCentury();
                             changeValue++;
