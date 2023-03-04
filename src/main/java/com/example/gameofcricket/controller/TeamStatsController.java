@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class TeamStatsController
-{
+public class TeamStatsController {
     @Autowired
     private TeamStatsService teamStatsService;
-@RequestMapping("TeamStats/{name}")
-    public Team getTeamStats(@PathVariable String name)
-    {
+
+    @RequestMapping("TeamStats/{name}")
+    public Team getTeamStats(@PathVariable String name) {
         return teamStatsService.getTeamStats(name);
     }
 }

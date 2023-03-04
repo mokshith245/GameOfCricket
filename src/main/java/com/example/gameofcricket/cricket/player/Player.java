@@ -6,8 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 
-public class Player
-{
+public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int playerId;
@@ -16,11 +15,11 @@ public class Player
     @Column(name = "teamName")
     private String teamName;
     @ManyToOne(targetEntity = Team.class)
-    @JoinColumn(name = "teamName",updatable = false,insertable = false)
+    @JoinColumn(name = "teamName", updatable = false, insertable = false)
     private Team team;
-    private int runs,numberOfBallsPlayed,wickets,innings,highestScore;
+    private int runs, numberOfBallsPlayed, wickets, innings, highestScore;
     private float numberOfOversBowled;
-    private  int extras,numberOfRunsGiven,halfCentury, century;
+    private int extras, numberOfRunsGiven, halfCentury, century;
 
     private PlayerRole playerRole;
 
@@ -33,83 +32,67 @@ public class Player
         this.teamName = teamName;
     }
 
-    public PlayerRole getPlayerRole()
-    {
+    public PlayerRole getPlayerRole() {
         return playerRole;
     }
 
-    public void setPlayerRole(PlayerRole playerRole)
-    {
+    public void setPlayerRole(PlayerRole playerRole) {
         this.playerRole = playerRole;
     }
 
-    public int getExtras()
-    {
+    public int getExtras() {
         return extras;
     }
 
-    public void setExtras(int extras)
-    {
+    public void setExtras(int extras) {
         this.extras = extras;
     }
 
-    public float getNumberOfOversBowled()
-    {
+    public float getNumberOfOversBowled() {
         return numberOfOversBowled;
     }
 
-    public void setNumberOfOversBowled(float numberOfOversBowled)
-    {
+    public void setNumberOfOversBowled(float numberOfOversBowled) {
         this.numberOfOversBowled = numberOfOversBowled;
     }
 
-    public int getNumberOfRunsGiven()
-    {
+    public int getNumberOfRunsGiven() {
         return numberOfRunsGiven;
     }
 
-    public void setNumberOfRunsGiven(int numberOfRunsGiven)
-    {
+    public void setNumberOfRunsGiven(int numberOfRunsGiven) {
         this.numberOfRunsGiven = numberOfRunsGiven;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public int getRuns()
-    {
+    public int getRuns() {
         return runs;
     }
 
-    public void setRuns(int runs)
-    {
+    public void setRuns(int runs) {
         this.runs = runs;
     }
 
-    public int getNumberOfBallsPlayed()
-    {
+    public int getNumberOfBallsPlayed() {
         return numberOfBallsPlayed;
     }
 
-    public void setNumberOfBallsPlayed(int numberOfBallsPlayed)
-    {
+    public void setNumberOfBallsPlayed(int numberOfBallsPlayed) {
         this.numberOfBallsPlayed = numberOfBallsPlayed;
     }
 
-    public int getWickets()
-    {
+    public int getWickets() {
         return wickets;
     }
 
-    public void setWickets(int wickets)
-    {
+    public void setWickets(int wickets) {
         this.wickets = wickets;
     }
 
@@ -152,7 +135,6 @@ public class Player
     public void setCentury(int century) {
         this.century = century;
     }
-
 
 
     @Override

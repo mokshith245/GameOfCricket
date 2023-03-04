@@ -7,8 +7,7 @@ import jakarta.persistence.IdClass;
 
 @Entity
 @IdClass(OversId.class)
-public class ScoreAtParticularOver
-{
+public class ScoreAtParticularOver {
     @Id
     private String teamName;
     @Id

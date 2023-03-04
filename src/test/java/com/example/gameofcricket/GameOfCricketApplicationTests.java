@@ -8,6 +8,7 @@ class GameOfCricketApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }

@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class StartGameController
-{
+public class StartGameController {
     @Autowired
     private GameService gameService;
+
     @PostMapping("/startGame")
-    public String startGame(@RequestParam int overs){
+    public String startGame(@RequestParam int overs) {
         gameService.createGame(overs);
         return "game started";
     }

@@ -1,4 +1,5 @@
 package com.example.gameofcricket;
+
 import com.example.gameofcricket.cricket.Simulation;
 import com.example.gameofcricket.cricket.StartGame;
 import com.example.gameofcricket.cricket.Team;
@@ -15,21 +16,21 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.event.EventListener;
 
 import java.util.*;
+
 @SpringBootApplication
-public class GameOfCricketApplication
-{
+public class GameOfCricketApplication {
     public static PlayerStatsPerMatchRepository playerStatsPerMatchRepository;
     public static TeamRepository teamRepository;
     public static PlayerRepository playerRepository;
     public static UpdateScoreAfterEveryBallRepository updateScoreAfterEveryBallRepository;
     public static GameStatsRepository gameStatsRepository;
-    public static void main(String[] args)
-    {
-        ConfigurableApplicationContext context= SpringApplication.run(GameOfCricketApplication.class, args);
+
+    public static void main(String[] args) {
+        ConfigurableApplicationContext context = SpringApplication.run(GameOfCricketApplication.class, args);
         playerRepository = context.getBean(PlayerRepository.class);
-        updateScoreAfterEveryBallRepository=context.getBean(UpdateScoreAfterEveryBallRepository.class);
-        teamRepository =context.getBean(TeamRepository.class);
-        gameStatsRepository=context.getBean(GameStatsRepository.class);
-        playerStatsPerMatchRepository=context.getBean((PlayerStatsPerMatchRepository.class));
+        updateScoreAfterEveryBallRepository = context.getBean(UpdateScoreAfterEveryBallRepository.class);
+        teamRepository = context.getBean(TeamRepository.class);
+        gameStatsRepository = context.getBean(GameStatsRepository.class);
+        playerStatsPerMatchRepository = context.getBean((PlayerStatsPerMatchRepository.class));
     }
 }

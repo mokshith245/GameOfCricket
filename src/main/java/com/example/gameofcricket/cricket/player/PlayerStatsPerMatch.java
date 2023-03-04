@@ -6,14 +6,13 @@ import jakarta.persistence.*;
 
 @Entity
 @IdClass(PlayerStatsPerMatchId.class)
-public class PlayerStatsPerMatch
-{
+public class PlayerStatsPerMatch {
     @Id
     private int matchId;
     @Id
     private int playerId;
-    @ManyToOne(targetEntity = Player.class,fetch = FetchType.LAZY)
-    @JoinColumn(name = "playerId",insertable = false,updatable = false)
+    @ManyToOne(targetEntity = Player.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "playerId", insertable = false, updatable = false)
     private Player player;
 
     private int matchNumber;
@@ -24,7 +23,7 @@ public class PlayerStatsPerMatch
     private int numberOfBallsPlayed;
     private int wickets;
     private float numberOfOversBowled;
-    private  int extras;
+    private int extras;
 
     private int numberOfRunsGiven;
 
