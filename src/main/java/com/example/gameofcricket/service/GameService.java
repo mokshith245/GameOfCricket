@@ -4,6 +4,7 @@ import com.example.gameofcricket.GameOfCricketApplication;
 import com.example.gameofcricket.cricket.StartGame;
 import com.example.gameofcricket.cricket.Team;
 import com.example.gameofcricket.dao.repositories.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -13,14 +14,18 @@ import java.util.ArrayList;
 
 
 import java.util.List;
+
 @Service
+@Slf4j
 public class GameService {
-    private  int matchCount ;
+    private int matchCount;
     private static List<Team> teams;
 
-    public void createGame(int overs){
+
+    public void createGame(int overs) {
+        log.info("Starting match");
         List<Team> teams = GameOfCricketApplication.teamRepository.getTeams();
-        //  teams= GameOfCricketApplication.teamRepository.findAll();
+//          teams= GameOfCricketApplication.teamRepository.findAll();
 //        for (Team team:teams
 //        ) {
 //            team.players=team.create_team();
@@ -60,16 +65,15 @@ public class GameService {
 //            GameOfCricketApplication.playerRepository.saveAll(team.players);
 //
 //        }
-        System.out.println(teams.size());
-        if(GameOfCricketApplication.gameStatsRepository.getMaxId().isEmpty())
-            matchCount=1;
+//        System.out.println(teams.size());
+        if (GameOfCricketApplication.gameStatsRepository.getMaxId().isEmpty())
+            matchCount = 1;
         else {
-            matchCount=GameOfCricketApplication.gameStatsRepository.getMaxId().get();
+            matchCount = GameOfCricketApplication.gameStatsRepository.getMaxId().get();
             matchCount++;
         }
-        StartGame startGame=new StartGame();
-        startGame.startGame(teams,overs,matchCount);
-
+        StartGame startGame = new StartGame();
+        startGame.startGame(teams, overs, matchCount);
 
     }
 }

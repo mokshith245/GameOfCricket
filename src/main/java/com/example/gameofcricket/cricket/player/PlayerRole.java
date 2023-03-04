@@ -1,7 +1,6 @@
 package com.example.gameofcricket.cricket.player;
 
-public enum PlayerRole
-{
+public enum PlayerRole {
     Batsman,
     Bowler
 }

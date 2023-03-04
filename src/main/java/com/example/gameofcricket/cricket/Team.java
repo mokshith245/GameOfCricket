@@ -1,12 +1,14 @@
 package com.example.gameofcricket.cricket;
+
 import com.example.gameofcricket.cricket.player.Player;
 import com.example.gameofcricket.cricket.player.PlayerRole;
 import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
-public class Team
-{
+public class Team {
     @OneToMany(mappedBy = "teamName")
     public List<Player> players = new ArrayList<>();
     @Id
@@ -20,9 +22,11 @@ public class Team
     private float overs;
     @Transient
     private int extras;
+
     public Team(String name) {
         this.name = name;
     }
+
     public Team() {
 
     }
@@ -38,6 +42,7 @@ public class Team
     public String getName() {
         return name;
     }
+
     public int getWickets() {
         return wickets;
     }
@@ -54,45 +59,42 @@ public class Team
         this.overs = overs;
     }
 
-    public int getExtras()
-    {
+    public int getExtras() {
         return extras;
     }
 
-    public void setExtras(int extras)
-    {
+    public void setExtras(int extras) {
         this.extras = extras;
     }
 
-    public int getScore()
-    {
+    public int getScore() {
         return score;
     }
-    public void setScore(int score)
-    {
+
+    public void setScore(int score) {
         this.score = score;
     }
-    public List<Player> create_team()
-    {
-        for(int i=1;i<=11;i++)
-        {
+
+    public List<Player> create_team() {
+        for (int i = 1; i <= 11; i++) {
             Player cricketer = new Player();
 
             cricketer.setName(String.format("Player%d", i));
             cricketer.setTeamName(getName());
-            if(i<=6)
-            cricketer.setPlayerRole(PlayerRole.Batsman);
+            if (i <= 6)
+                cricketer.setPlayerRole(PlayerRole.Batsman);
             else
                 cricketer.setPlayerRole(PlayerRole.Bowler);
             players.add(cricketer);
         }
-        return  players;
+        return players;
     }
+
     @Override
     public String toString() {
         return "Team{" +
-                ", players=" + players +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
+                ", numberOfMatchesPlayed=" + numberOfMatchesPlayed +
                 ", score=" + score +
                 ", wickets=" + wickets +
                 ", overs=" + overs +

@@ -42,8 +42,8 @@ public class Play {
         batsManOrder++;
         player2 = battingTeam.players.get(batsManOrder);
         bowling = bowlingTeam.players.get(bowler);
-        player1.setInnings(player1.getInnings()+1);
-        player2.setInnings(player2.getInnings()+1);
+        player1.setInnings(player1.getInnings() + 1);
+        player2.setInnings(player2.getInnings() + 1);
         RandomGenerator generateRuns = new RandomGenerator();
         while (battingTeam.players.size() - 1 > totalWickets) {
             while (total_overs < oversForMatch) {
@@ -55,29 +55,35 @@ public class Play {
                     runs = generateRuns.generateBatsmanRuns();
                 else
                     runs = generateRuns.generateBowlerRuns();
-                    if(runs==0)  dot();
-                    if(runs==1||runs==3)
-                    {
-                        score += runs;
-                        if(striker==player1)
-                        striker = Runs.updateMatchStats(player1, player2, striker, bowling, runs);
-                        else
-                        {
-                            striker = Runs.updateMatchStats( player2,player1, striker, bowling, runs);
-                        }
+                if (runs == 0) dot();
+                if (runs == 1 || runs == 3) {
+                    score += runs;
+                    if (striker == player1)
+                        striker = Runs.updateMatchStatsOdd(player1, player2, striker, bowling, runs);
+                    else {
+                        striker = Runs.updateMatchStatsOdd(player2, player1, striker, bowling, runs);
                     }
-                    if(runs==2||runs==4||runs==6)
-                    {
-                        score += runs;
-                        if(striker==player1)
-                            striker = Runs.updateMatchStats(player1, player1, striker, bowling, runs);
-                        else
-                        {
-                            striker = Runs.updateMatchStats( player2,player2, striker, bowling, runs);
-                        }
+                }
+                if (runs == 2 || runs == 4 || runs == 6) {
+                    score += runs;
+                    if (striker == player1)
+                        striker = Runs.updateMatchStatsEven(player1, striker, bowling, runs);
+                    else {
+                        striker = Runs.updateMatchStatsEven(player2, striker, bowling, runs);
                     }
-                    if(runs==5)  wide();
-                    if(runs==7) wick();
+                }
+                if (runs == 5) if (striker == player1)
+                    wide(bowling, runs);
+                else {
+                    wide(bowling, runs);
+                }
+                if (runs == 7) if (!noBall) {
+                    if (striker == player1)
+                        player1 = wick(player1, striker, bowling, runs);
+                    else {
+                        player2 = wick(player2, striker, bowling, runs);
+                    }
+                }
 
                 if (runs == 5) {
                     scoreAtParticularOver.setOvers(checkOvers);
@@ -147,8 +153,6 @@ public class Play {
                 break;
             }
         }
-
-
     }
 
     public void dot() {
@@ -157,64 +161,37 @@ public class Play {
         striker.setNumberOfBallsPlayed(x);
     }
 
-    public void wick() {
+    public Player wick(Player player, Player striker, Player bowling, int runs) {
 
-        if (Objects.equals(striker.getName(), player1.getName()) && !noBall) {
+        int balls = player.getNumberOfBallsPlayed();
+        balls++;
+        player.setNumberOfBallsPlayed(balls);
+        totalWickets++;
+        battingTeam.setWickets(totalWickets);
+        batsManOrder++;
+        if (batsManOrder == 11)
+            return null;
+        player = battingTeam.players.get(batsManOrder);
+        striker = battingTeam.players.get(batsManOrder);
+        player.setInnings(player.getInnings() + 1);
+        int bowlerWicket = bowling.getWickets();
+        bowlerWicket++;
+        bowling.setWickets(bowlerWicket);
 
-            int balls = player1.getNumberOfBallsPlayed();
-            balls++;
-            player1.setNumberOfBallsPlayed(balls);
-            totalWickets++;
-            battingTeam.setWickets(totalWickets);
-            batsManOrder++;
-            if (batsManOrder == 11)
-                return;
-            player1 = battingTeam.players.get(batsManOrder);
-            striker = battingTeam.players.get(batsManOrder);
-            player1.setInnings(player1.getInnings()+1);
-            int bowlerWicket = bowling.getWickets();
-            bowlerWicket++;
-            bowling.setWickets(bowlerWicket);
-        } else if (noBall) {
-
-            int balls = player2.getNumberOfBallsPlayed();
-            balls++;
-            player2.setNumberOfBallsPlayed(balls);
-            totalWickets++;
-            battingTeam.setWickets(totalWickets);
-            batsManOrder++;
-            if (batsManOrder == 11)
-                return;
-            player2 = battingTeam.players.get(batsManOrder);
-            striker = battingTeam.players.get(batsManOrder);
-            player2.setInnings(player2.getInnings()+1);
-            int bowlerWicket = bowling.getWickets();
-            bowlerWicket++;
-            bowling.setWickets(bowlerWicket);
-        }
         if (noBall)
             noBall = false;
+        return player;
     }
 
-    public void wide() {
+    public void wide(Player bowling, int runs) {
+        score++;
+        totalExtras++;
+        int wide_run = bowling.getExtras() + 1;
+        bowling.setExtras(wide_run);
+        int bowlerRuns = bowling.getNumberOfRunsGiven();
+        bowlerRuns++;
+        bowling.setNumberOfRunsGiven(bowlerRuns);
 
-        if (Objects.equals(striker.getName(), player1.getName())) {
-            totalExtras++;
-            int wide_run = bowling.getExtras() + 1;
-            bowling.setExtras(wide_run);
-            score += runs;
-            int bowlerRuns = bowling.getNumberOfRunsGiven();
-            bowlerRuns += runs;
-            bowling.setNumberOfRunsGiven(bowlerRuns);
-        } else {
-            totalExtras++;
-            int wideRun = bowling.getExtras() + 1;
-            bowling.setExtras(wideRun);
-            score += runs;
-            int bowlerRuns = bowling.getNumberOfRunsGiven();
-            bowlerRuns += runs;
-            bowling.setNumberOfRunsGiven(bowlerRuns);
-        }
     }
 }
 

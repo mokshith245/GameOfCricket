@@ -8,26 +8,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 @RestController
-public class PlayerStatsPerMatchController
-{
+public class PlayerStatsPerMatchController {
     @Autowired
     private PlayerStatsPerMatchPerMatchService playerStatsPerMatchPerMatchService;
+
     @RequestMapping("/highestScore/{id}/{teamName}")
-    public List<PlayerStatsPerMatch> getHighestScore(@PathVariable int id, @PathVariable String teamName)
-    {
-        return playerStatsPerMatchPerMatchService.getHighestScoreByMatchIdAndTeamName(id,teamName);
+    public List<PlayerStatsPerMatch> getHighestScore(@PathVariable int id, @PathVariable String teamName) {
+        return playerStatsPerMatchPerMatchService.getHighestScoreByMatchIdAndTeamName(id, teamName);
     }
+
     @RequestMapping("/runsScoredPlayer/{id}/{runs}")
-    public List<PlayerStatsPerMatch> getNameOfRunsScoredPlayer(@PathVariable int id,@PathVariable int runs)
-    {
-        return playerStatsPerMatchPerMatchService.getRunsScoredPlayer(id,runs);
+    public List<PlayerStatsPerMatch> getNameOfRunsScoredPlayer(@PathVariable int id, @PathVariable int runs) {
+        return playerStatsPerMatchPerMatchService.getRunsScoredPlayer(id, runs);
     }
 
 
     @RequestMapping("/scoreCard/{id}")
-    public List<PlayerStatsPerMatch> getScoreCardOFMatch(@PathVariable int id)
-    {
+    public List<PlayerStatsPerMatch> getScoreCardOFMatch(@PathVariable int id) {
         return playerStatsPerMatchPerMatchService.getMatchScoreCard(id);
     }
 }

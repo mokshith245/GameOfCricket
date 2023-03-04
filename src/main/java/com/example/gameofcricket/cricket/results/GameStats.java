@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Entity
 @IdClass(GameStatsId.class)
-public class GameStats
-{
+public class GameStats {
     @Id
     private String teamName;
     private int score;
