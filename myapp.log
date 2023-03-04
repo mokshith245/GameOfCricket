@@ -1,0 +1,107 @@
+2023-03-04T19:34:38.643+05:30  INFO 27486 --- [restartedMain] c.e.g.GameOfCricketApplication           : Starting GameOfCricketApplication using Java 19.0.2 with PID 27486 (/Users/nmmokshith/IdeaProjects/GameOfCricket/build/classes/java/main started by nmmokshith in /Users/nmmokshith/IdeaProjects/GameOfCricket)
+2023-03-04T19:34:38.643+05:30  INFO 27486 --- [restartedMain] c.e.g.GameOfCricketApplication           : No active profile set, falling back to 1 default profile: "default"
+2023-03-04T19:34:38.699+05:30  INFO 27486 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-04T19:34:38.706+05:30  INFO 27486 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 5 JPA repository interfaces.
+2023-03-04T19:34:38.746+05:30  INFO 27486 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-04T19:34:38.747+05:30  INFO 27486 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-04T19:34:38.747+05:30  INFO 27486 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-03-04T19:34:38.751+05:30  INFO 27486 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-04T19:34:38.751+05:30  INFO 27486 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 108 ms
+2023-03-04T19:34:38.770+05:30  INFO 27486 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : GameOfCricket - Starting...
+2023-03-04T19:34:38.780+05:30  INFO 27486 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : GameOfCricket - Added connection com.mysql.cj.jdbc.ConnectionImpl@57fcf4fe
+2023-03-04T19:34:38.781+05:30  INFO 27486 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : GameOfCricket - Start completed.
+2023-03-04T19:34:38.781+05:30  INFO 27486 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-03-04T19:34:38.843+05:30  INFO 27486 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-04T19:34:38.920+05:30  WARN 27486 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-04T19:34:38.940+05:30 DEBUG 27486 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-03-04T19:34:38.947+05:30 DEBUG 27486 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 10 mappings in 'requestMappingHandlerMapping'
+2023-03-04T19:34:38.952+05:30 DEBUG 27486 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2023-03-04T19:34:38.955+05:30 DEBUG 27486 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-03-04T19:34:38.967+05:30  INFO 27486 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-03-04T19:34:38.973+05:30  INFO 27486 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-04T19:34:38.975+05:30  INFO 27486 --- [restartedMain] c.e.g.GameOfCricketApplication           : Started GameOfCricketApplication in 0.353 seconds (process running for 2671.732)
+2023-03-04T19:34:38.976+05:30  INFO 27486 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-03-04T19:34:52.182+05:30  INFO 27486 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-04T19:34:52.183+05:30  INFO 27486 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : GameOfCricket - Shutdown initiated...
+2023-03-04T19:34:52.185+05:30  INFO 27486 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : GameOfCricket - Shutdown completed.
+2023-03-04T19:34:53.319+05:30  INFO 28289 --- [restartedMain] c.e.g.GameOfCricketApplication           : Starting GameOfCricketApplication using Java 19.0.2 with PID 28289 (/Users/nmmokshith/IdeaProjects/GameOfCricket/build/classes/java/main started by nmmokshith in /Users/nmmokshith/IdeaProjects/GameOfCricket)
+2023-03-04T19:34:53.320+05:30  INFO 28289 --- [restartedMain] c.e.g.GameOfCricketApplication           : No active profile set, falling back to 1 default profile: "default"
+2023-03-04T19:34:53.339+05:30  INFO 28289 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-03-04T19:34:53.339+05:30  INFO 28289 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-03-04T19:34:53.624+05:30  INFO 28289 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-04T19:34:53.663+05:30  INFO 28289 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 5 JPA repository interfaces.
+2023-03-04T19:34:53.910+05:30  INFO 28289 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-04T19:34:53.914+05:30  INFO 28289 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-04T19:34:53.914+05:30  INFO 28289 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-03-04T19:34:53.937+05:30  INFO 28289 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-04T19:34:53.938+05:30  INFO 28289 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 599 ms
+2023-03-04T19:34:54.152+05:30  INFO 28289 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : GameOfCricket - Starting...
+2023-03-04T19:34:54.298+05:30  INFO 28289 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : GameOfCricket - Added connection com.mysql.cj.jdbc.ConnectionImpl@7aa8ca2e
+2023-03-04T19:34:54.299+05:30  INFO 28289 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : GameOfCricket - Start completed.
+2023-03-04T19:34:54.334+05:30  INFO 28289 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-03-04T19:34:54.827+05:30  INFO 28289 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-04T19:34:55.027+05:30  WARN 28289 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-04T19:34:55.082+05:30 DEBUG 28289 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-03-04T19:34:55.119+05:30 DEBUG 28289 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 10 mappings in 'requestMappingHandlerMapping'
+2023-03-04T19:34:55.135+05:30 DEBUG 28289 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2023-03-04T19:34:55.141+05:30 DEBUG 28289 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-03-04T19:34:55.199+05:30  INFO 28289 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-03-04T19:34:55.218+05:30  INFO 28289 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-04T19:34:55.225+05:30  INFO 28289 --- [restartedMain] c.e.g.GameOfCricketApplication           : Started GameOfCricketApplication in 2.068 seconds (process running for 2.325)
+2023-03-04T19:35:00.018+05:30  INFO 28289 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-04T19:35:00.018+05:30  INFO 28289 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-04T19:35:00.018+05:30 DEBUG 28289 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2023-03-04T19:35:00.019+05:30 DEBUG 28289 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2023-03-04T19:35:00.019+05:30 DEBUG 28289 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2023-03-04T19:35:00.019+05:30 DEBUG 28289 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@68567866
+2023-03-04T19:35:00.020+05:30 DEBUG 28289 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@bf501dc
+2023-03-04T19:35:00.020+05:30 DEBUG 28289 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2023-03-04T19:35:00.020+05:30  INFO 28289 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-03-04T19:35:00.024+05:30 DEBUG 28289 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/startGame?overs=10", parameters={masked}
+2023-03-04T19:35:00.029+05:30 DEBUG 28289 --- [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.gameofcricket.controller.StartGameController#startGame(int)
+2023-03-04T19:35:00.038+05:30  INFO 28289 --- [http-nio-8080-exec-1] c.e.gameofcricket.service.GameService    : Starting match
+2023-03-04T19:35:00.575+05:30 DEBUG 28289 --- [http-nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
+2023-03-04T19:35:00.575+05:30 DEBUG 28289 --- [http-nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Writing ["game started"]
+2023-03-04T19:35:00.579+05:30 DEBUG 28289 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-03-04T19:35:10.740+05:30 DEBUG 28289 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/MatchDetails/4", parameters={}
+2023-03-04T19:35:10.742+05:30 DEBUG 28289 --- [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.gameofcricket.controller.GetStatsOfMatchController#getMatchDetails(int)
+2023-03-04T19:35:10.751+05:30  INFO 28289 --- [http-nio-8080-exec-3] c.e.g.service.GameStatsService           : Getting match stats
+2023-03-04T19:35:10.756+05:30 DEBUG 28289 --- [http-nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-03-04T19:35:10.762+05:30 DEBUG 28289 --- [http-nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [[GameStats{teamName='India', score=125, won='West Indies  Won by  10 wickets.', matchId=4, overs=10. (truncated)...]
+2023-03-04T19:35:10.786+05:30 DEBUG 28289 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-03-04T19:35:22.149+05:30 DEBUG 28289 --- [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/playerStats/24", parameters={}
+2023-03-04T19:35:22.152+05:30 DEBUG 28289 --- [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.gameofcricket.controller.PlayerController#getPlayerStats(int)
+2023-03-04T19:35:22.155+05:30  INFO 28289 --- [http-nio-8080-exec-4] c.e.gameofcricket.service.PlayerService  : Getting Player Stats
+2023-03-04T19:35:22.178+05:30 DEBUG 28289 --- [http-nio-8080-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-03-04T19:35:22.185+05:30 DEBUG 28289 --- [http-nio-8080-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Writing [Player{playerId=24, name='Player2', teamName='New Zealand', runs=231, numberOfBallsPlayed=89, wicket (truncated)...]
+2023-03-04T19:35:22.186+05:30 DEBUG 28289 --- [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-03-04T19:35:24.832+05:30 DEBUG 28289 --- [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/highestScore/14/India", parameters={}
+2023-03-04T19:35:24.833+05:30 DEBUG 28289 --- [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.gameofcricket.controller.PlayerStatsPerMatchController#getHighestScore(int, String)
+2023-03-04T19:35:24.847+05:30  INFO 28289 --- [http-nio-8080-exec-5] e.g.s.PlayerStatsPerMatchPerMatchService : Getting the player who scored highest runs in team
+2023-03-04T19:35:24.854+05:30 DEBUG 28289 --- [http-nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-03-04T19:35:24.863+05:30 DEBUG 28289 --- [http-nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Writing [[PlayerStatsPerMatch{matchId=14, playerId=6, name='Player6', teamName='India', runs=41, numberOfBall (truncated)...]
+2023-03-04T19:35:24.865+05:30 DEBUG 28289 --- [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-03-04T19:35:26.935+05:30 DEBUG 28289 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/getScore/14/India/4.2", parameters={}
+2023-03-04T19:35:26.936+05:30 DEBUG 28289 --- [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.gameofcricket.controller.GetScoreAtParticularOverController#getScore(int, String, float)
+2023-03-04T19:35:26.942+05:30  INFO 28289 --- [http-nio-8080-exec-6] c.e.g.s.ScoreAtParticularTimeService     : Getting the stats at 4.2overs
+2023-03-04T19:35:26.945+05:30 DEBUG 28289 --- [http-nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-03-04T19:35:26.946+05:30 DEBUG 28289 --- [http-nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Writing [[Overs{teamName='India', overs=4.2, matchId=14, score=57, wickets=3}]]
+2023-03-04T19:35:26.966+05:30 DEBUG 28289 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-03-04T19:35:29.010+05:30 DEBUG 28289 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/runsScoredPlayer/14/30", parameters={}
+2023-03-04T19:35:29.013+05:30 DEBUG 28289 --- [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.gameofcricket.controller.PlayerStatsPerMatchController#getNameOfRunsScoredPlayer(int, int)
+2023-03-04T19:35:29.020+05:30  INFO 28289 --- [http-nio-8080-exec-7] e.g.s.PlayerStatsPerMatchPerMatchService : Getting the Players who scored more than 30 runs
+2023-03-04T19:35:29.032+05:30 DEBUG 28289 --- [http-nio-8080-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-03-04T19:35:29.033+05:30 DEBUG 28289 --- [http-nio-8080-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Writing [[PlayerStatsPerMatch{matchId=14, playerId=2, name='Player2', teamName='India', runs=31, numberOfBall (truncated)...]
+2023-03-04T19:35:29.035+05:30 DEBUG 28289 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-03-04T19:35:31.334+05:30 DEBUG 28289 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/TeamStats/India", parameters={}
+2023-03-04T19:35:31.335+05:30 DEBUG 28289 --- [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.gameofcricket.controller.TeamStatsController#getTeamStats(String)
+2023-03-04T19:35:31.337+05:30  INFO 28289 --- [http-nio-8080-exec-8] c.e.g.service.TeamStatsService           : Getting team stats
+2023-03-04T19:35:31.345+05:30 DEBUG 28289 --- [http-nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-03-04T19:35:31.351+05:30 DEBUG 28289 --- [http-nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Writing [Team{name='India', numberOfMatchesPlayed=6, score=0, wickets=0, overs=0.0, extras=0}]
+2023-03-04T19:35:31.358+05:30 DEBUG 28289 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-03-04T19:35:33.281+05:30 DEBUG 28289 --- [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/scoreCard/14", parameters={}
+2023-03-04T19:35:33.283+05:30 DEBUG 28289 --- [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.gameofcricket.controller.PlayerStatsPerMatchController#getScoreCardOFMatch(int)
+2023-03-04T19:35:33.286+05:30  INFO 28289 --- [http-nio-8080-exec-9] e.g.s.PlayerStatsPerMatchPerMatchService : Getting the match scorecard
+2023-03-04T19:35:33.300+05:30 DEBUG 28289 --- [http-nio-8080-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-03-04T19:35:33.301+05:30 DEBUG 28289 --- [http-nio-8080-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Writing [[PlayerStatsPerMatch{matchId=14, playerId=1, name='Player1', teamName='India', runs=14, numberOfBall (truncated)...]
+2023-03-04T19:35:33.301+05:30 DEBUG 28289 --- [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
