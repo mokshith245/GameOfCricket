@@ -4,9 +4,11 @@ import com.example.gameofcricket.dao.compositeKeys.OversId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 @Entity
 @IdClass(OversId.class)
+@Document(indexName = "scoreatparticularover")
 public class ScoreAtParticularOver {
     @Id
     private String teamName;
@@ -18,6 +20,14 @@ public class ScoreAtParticularOver {
     private int score;
 
     private int wickets;
+
+    @org.springframework.data.annotation.Id
+    @org.springframework.data.annotation.AccessType(org.springframework.data.annotation.AccessType.Type.PROPERTY)
+    public String getElasticsearchId() {
+        return Integer.toString(matchId)+ '-' + overs +teamName;
+    }
+    public void setElasticsearchId(String ignored) {
+    }
 
     public int getMatchId() {
         return matchId;

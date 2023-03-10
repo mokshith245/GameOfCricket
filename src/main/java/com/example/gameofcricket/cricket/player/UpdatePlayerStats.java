@@ -28,6 +28,7 @@ public class UpdatePlayerStats {
                             i.setHighestScore(i.getRuns() - j.getRuns());
                         }
                         GameOfCricketApplication.playerRepository.save(i);
+                        GameOfCricketApplication.playerRepo.save(i);
                     }
 
                 }
@@ -43,10 +44,9 @@ public class UpdatePlayerStats {
                     changeValue++;
                     i.setHalfCentury(changeValue);
                 }
-
                 i.setHighestScore(i.getRuns());
-
                 GameOfCricketApplication.playerRepository.save(i);
+                GameOfCricketApplication.playerRepo.save(i);
             }
         }
 

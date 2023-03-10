@@ -3,8 +3,10 @@ package com.example.gameofcricket.cricket.player;
 import com.example.gameofcricket.cricket.results.GameStats;
 import com.example.gameofcricket.dao.compositeKeys.PlayerStatsPerMatchId;
 import jakarta.persistence.*;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 @Entity
+@Document(indexName = "playerstatspermatch")
 @IdClass(PlayerStatsPerMatchId.class)
 public class PlayerStatsPerMatch {
     @Id
@@ -28,6 +30,14 @@ public class PlayerStatsPerMatch {
     private int numberOfRunsGiven;
 
     private PlayerRole playerRole;
+
+    @org.springframework.data.annotation.Id
+    @org.springframework.data.annotation.AccessType(org.springframework.data.annotation.AccessType.Type.PROPERTY)
+    public String getElasticsearchId() {
+        return Integer.toString(matchId)+ '-' + Integer.toString(playerId);
+    }
+    public void setElasticsearchId(String ignored) {
+    }
 
     public int getMatchNumber() {
         return matchNumber;

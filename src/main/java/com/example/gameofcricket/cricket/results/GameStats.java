@@ -2,11 +2,13 @@ package com.example.gameofcricket.cricket.results;
 
 import com.example.gameofcricket.dao.compositeKeys.GameStatsId;
 import jakarta.persistence.*;
+import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.stereotype.Service;
 
 @Service
 @Entity
 @IdClass(GameStatsId.class)
+@Document(indexName = "gamestats")
 public class GameStats {
     @Id
     private String teamName;
@@ -17,6 +19,14 @@ public class GameStats {
     private float overs;
     private int wickets;
     private int extras;
+
+    @org.springframework.data.annotation.Id
+    @org.springframework.data.annotation.AccessType(org.springframework.data.annotation.AccessType.Type.PROPERTY)
+    public String getElasticsearchId() {
+        return teamName + '-' + matchId;
+    }
+    public void setElasticsearchId(String ignored) {
+    }
 
     public int getExtras() {
         return extras;

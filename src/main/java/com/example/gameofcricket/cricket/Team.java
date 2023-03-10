@@ -3,24 +3,36 @@ package com.example.gameofcricket.cricket;
 import com.example.gameofcricket.cricket.player.Player;
 import com.example.gameofcricket.cricket.player.PlayerRole;
 import jakarta.persistence.*;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Document(indexName ="team")
 public class Team {
+
+    @org.springframework.data.annotation.Transient
     @OneToMany(mappedBy = "teamName")
     public List<Player> players = new ArrayList<>();
     @Id
+    @org.springframework.data.annotation.Id
+    @Field(type = FieldType.Keyword,name ="team_id")
     private String name;
     private int numberOfMatchesPlayed;
     @Transient
+    @org.springframework.data.annotation.Transient
     private int score;
     @Transient
+    @org.springframework.data.annotation.Transient
     private int wickets;
     @Transient
+    @org.springframework.data.annotation.Transient
     private float overs;
     @Transient
+    @org.springframework.data.annotation.Transient
     private int extras;
 
     public Team(String name) {
