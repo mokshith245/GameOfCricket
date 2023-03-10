@@ -54,6 +54,7 @@ public class ScoreCard {
                         playerStatsPerMatch.setWickets(i.getWickets() - setStats);
                         playerStatsPerMatch.setPlayerRole(i.getPlayerRole());
                         GameOfCricketApplication.playerStatsPerMatchRepository.save(playerStatsPerMatch);
+                        GameOfCricketApplication.playerStatsPerMatchRepo.save(playerStatsPerMatch);
                     }
         }
         else{
@@ -72,6 +73,7 @@ public class ScoreCard {
                 playerStatsPerMatch.setWickets(i.getWickets());
                 playerStatsPerMatch.setPlayerRole(i.getPlayerRole());
                 GameOfCricketApplication.playerStatsPerMatchRepository.save(playerStatsPerMatch);
+                GameOfCricketApplication.playerStatsPerMatchRepo.save(playerStatsPerMatch);
 
             }
         }

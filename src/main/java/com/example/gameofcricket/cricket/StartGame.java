@@ -29,7 +29,7 @@ public class StartGame {
             battingTeam = team2Obj;
             bowlingTeam = team1Obj;
         }
-        Simulation.startSimulation(battingTeam, bowlingTeam, overs, countMatches);
+        OnBoardingOfTeams.startSimulation(battingTeam, bowlingTeam, overs, countMatches);
         MatchResults.getMatchResults(battingTeam, bowlingTeam, overs, countMatches);
         ScoreCard scoreCard = new ScoreCard();
         scoreCard.getScorecard(battingTeam, bowlingTeam, countMatches);

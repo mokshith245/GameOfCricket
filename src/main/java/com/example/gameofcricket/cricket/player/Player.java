@@ -1,23 +1,34 @@
 package com.example.gameofcricket.cricket.player;
 
 import com.example.gameofcricket.cricket.Team;
-import com.example.gameofcricket.dao.compositeKeys.PlayerId;
 import jakarta.persistence.*;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Entity
-
+@Document(indexName ="player")
 public class Player {
     @Id
+    @org.springframework.data.annotation.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int playerId;
+
     private String name;
 
     @Column(name = "teamName")
     private String teamName;
+
+    @org.springframework.data.annotation.Transient
     @ManyToOne(targetEntity = Team.class)
     @JoinColumn(name = "teamName", updatable = false, insertable = false)
     private Team team;
-    private int runs, numberOfBallsPlayed, wickets, innings, highestScore;
+
+    private int runs;
+   // @Field(type = FieldType.Integer.name=number)
+
+    private int numberOfBallsPlayed;
+    private int wickets, innings, highestScore;
     private float numberOfOversBowled;
     private int extras, numberOfRunsGiven, halfCentury, century;
 
